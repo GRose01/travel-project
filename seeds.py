@@ -21,7 +21,7 @@ with app.app_context():
     db.session.add(ben)
 
 # create trips
-    madrid = Trip(name='Madrid', images='url_here', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=2000, number_of_days=5, time_of_year='September', categories=[])
+    madrid = Trip(name='Madrid', images='url_here', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=800, number_of_days=5, time_of_year='September', categories=[], creator=ben, liked_by=[ben])
 
     nepal = Trip(name='Annapurna Trek', images='url_here', description='Trekking in the Himalayas, eating dahl and searching for snow leopards', budget=2500, number_of_days=30, time_of_year='April', categories=[])
 
