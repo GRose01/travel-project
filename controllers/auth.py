@@ -1,9 +1,9 @@
-from Flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request
 from models.user import User, UserSchema
 from lib.helpers import is_unique
 
-user_schema = UserSchema()
 api = Blueprint('auth', __name__)
+user_schema = UserSchema()
 
 @api.route('/register', methods=['POST'])
 def register():

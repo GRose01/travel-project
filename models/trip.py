@@ -5,14 +5,14 @@ from .category import Category
 from .user import User
 
 # create many to many trips-category table
-trips_categories = db.Table('trips-categories',
-    db.Column('trip_id', db.Integer, db.ForeignKey('trips.id', primary_key=True)),
-    db.Column('category_id', db.Integer, db.ForeignKey('categories.id', primary_key=True)),
+trips_categories = db.Table('trips_categories',
+    db.Column('trip_id', db.Integer, db.ForeignKey('trips_table.id'), primary_key=True),
+    db.Column('category_id', db.Integer, db.ForeignKey('category_table.id'), primary_key=True)
 )
 
 class Trip(db.Model, BaseModel):
 
-    __tablename__ = 'trips'
+    __tablename__ = 'trips_table'
 
     name = db.Column(db.String(50), nullable=False)
     images = db.Column(db.String(128))
@@ -20,7 +20,7 @@ class Trip(db.Model, BaseModel):
     budget = db.Column(db.Integer, nullable=False)
     number_of_days = db.Column(db.Integer, nullable=False)
     time_of_year = db.Column(db.String(20), nullable=False)
-    categories = db.relationship('Category', secondary=trips_categories, backref='trips') # does this need a secondary table?
+    categories = db.relationship('Category', secondary=trips_categories, backref='trips')
     # add in creator/creator_id - linked to User
 
 class TripSchema(ma.ModelSchema):
