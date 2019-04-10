@@ -9,3 +9,6 @@ class Category(db.Model, BaseModel):
 
 class CategorySchema(ma.ModelSchema):
     trips = fields.Nested('TripSchema', many=True)
+
+    class Meta:
+        model = Category

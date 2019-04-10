@@ -1,3 +1,3 @@
 import os
 
-secret = os.getenv('I really like Nickelback')
+secret = os.getenv('SECRET', 'I really like Nickelback')

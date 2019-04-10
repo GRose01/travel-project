@@ -6,8 +6,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from marshmallow import validates_schema, ValidationError, validate, fields
 from .base import BaseModel
 
-
-
 class User(db.Model, BaseModel):
 
     __tablename__ = 'user_table'
@@ -46,6 +44,7 @@ class User(db.Model, BaseModel):
 class UserSchema(ma.ModelSchema, BaseModel):
 
     @validates_schema
+    #pylint: disable=R0201
     def check_passwords_match(self, data):
         if data.get('password') != data.get('password_confirmation'):
             raise ValidationError(
@@ -53,12 +52,12 @@ class UserSchema(ma.ModelSchema, BaseModel):
             'password_confirmation'
             )
 
-        password = fields.String(required=True, validate=[validate.Length(min=4, max=20)])
-        password_confirmation = fields.String(required=True)
+    password = fields.String(required=True, validate=[validate.Length(min=4, max=20)])
+    password_confirmation = fields.String(required=True)
 
-        my_trips = fields.Nested('TripSchema', many=True)
-        likes = fields.Nested('TripSchema', many=True)
+    my_trips = fields.Nested('TripSchema', many=True)
+    likes = fields.Nested('TripSchema', many=True)
 
-class Meta:
-    model = User
-    exclude = ('password_hash',)
+    class Meta:
+        model = User
+        exclude = ('password_hash',)
