@@ -22,9 +22,6 @@ with app.app_context():
     db.session.add(ben)
 
 
-
-
-
     #creating categories
     cat1 = Category(name='Accessible')
     cat2 = Category(name='Activity')
