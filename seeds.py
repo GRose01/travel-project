@@ -21,19 +21,11 @@ with app.app_context():
 
     db.session.add(ben)
 
-# create trips
-    madrid = Trip(name='Madrid', images='url_here', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=2000, number_of_days=5, time_of_year='September', categories=[cat10, cat11, cat26])
 
-    nepal = Trip(name='Annapurna Trek', images='url_here', description='Trekking in the Himalayas, eating dahl and searching for snow leopards', budget=2500, number_of_days=30, time_of_year='April', categories=[cat3, cat4, cat42, cat32])
 
-    iceland = Trip(name='Iceland Tour', images='url_here', description='Seeing northern lights and all the sights!', budget=1500, number_of_days=4, time_of_year='January', categories=[cat27, cat33, cat37])
 
-# addings TRIP seeds only
-    db.session.add(madrid)
-    db.session.add(nepal)
-    db.session.add(iceland)
 
-#creating categories
+    #creating categories
     cat1 = Category(name='Accessible')
     cat2 = Category(name='Activity')
     cat3 = Category(name='Adventure')
@@ -84,6 +76,19 @@ with app.app_context():
     cat48 = Category(name='Wildlife')
     cat49 = Category(name='Winter')
     cat50 = Category(name='Yoga')
+
+# create trips
+    madrid = Trip(name='Madrid', images='url_here', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=800, number_of_days=5, time_of_year='September', categories=[], creator=ben, liked_by=[ben])
+
+    nepal = Trip(name='Annapurna Trek', images='url_here', description='Trekking in the Himalayas, eating dahl and searching for snow leopards', budget=2500, number_of_days=30, time_of_year='April', categories=[cat3, cat4, cat42, cat32])
+
+    iceland = Trip(name='Iceland Tour', images='url_here', description='Seeing northern lights and all the sights!', budget=1500, number_of_days=4, time_of_year='January', categories=[cat27, cat33, cat37])
+
+# addings TRIP seeds only
+    db.session.add(madrid)
+    db.session.add(nepal)
+    db.session.add(iceland)
+
 
 
 #adding CATEGORIES seeds ONLY

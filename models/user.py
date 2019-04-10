@@ -56,7 +56,7 @@ class UserSchema(ma.ModelSchema, BaseModel):
     password_confirmation = fields.String(required=True)
 
     my_trips = fields.Nested('TripSchema', many=True)
-    likes = fields.Nested('TripSchema', many=True)
+    likes = fields.Nested('TripSchema', many=True, only=('id', 'name'))
 
     class Meta:
         model = User
