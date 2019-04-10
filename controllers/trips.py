@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify, request, g
 from models.trip import Trip, TripSchema
 from models.category import Category
 
@@ -7,7 +7,7 @@ trip_schema = TripSchema()
 api = Blueprint('trips', __name__)
 
 # INDEX ROUTE
-api.route('/trips', methods=['GET'])
+@api.route('/trips', methods=['GET'])
 def index():
     trips = Trip.query.all()
     return trip_schema.jsonify(trips, many=True), 200
