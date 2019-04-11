@@ -9,7 +9,8 @@ body {
   margin: 0;
   margin: 0 auto;
   border: 3px solid grey;
-  h4 {
+  font-family: 'Kalam', cursive;
+    h4 {
     font-size: 20px;
   }
 }
@@ -17,7 +18,16 @@ body {
 main {
   width: 480px;
   height: 80vh;
+  overflow-y: scroll;
+  background-color: $secondary;
+}
+
+.trip-card {
+  width: 450px;
+  height: 80vh;
   margin: 0 auto;
+  overflow-y: scroll;
+  background-color: $primary_soft;
 }
 
 // COMMON STYLINGS
@@ -82,4 +92,24 @@ main {
 .contains-categories {
   width: 100%;
   height: 15%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contains-like_viewTrip {
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  width: 100%;
+  justify-content: space-around;
+  align-content: center;
+  text-align: center;
+  .fa-thumbs-up {
+    font-size: 50px;
+  }
+  h4, button, .fa-thumbs-up {
+    height: 50%;
+    width: 30%;
+    text-align: center;
+  }
 }
