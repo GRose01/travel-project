@@ -1,15 +1,28 @@
 import React from 'react'
+import axios from 'axios'
 
 
 class Home extends React.Component{
   constructor(){
     super()
 
-    this.state = {}
+    this.state = {
+
+    }
+  }
+
+  getTrips(){
+    axios.get('/trips')
+      .then(trips => {
+        this.setState({results: trips.data})
+      })
   }
 
 
+
   render(){
+    console.log(this.state)
+
     return(
       <main>
         <div className="trip-card">
