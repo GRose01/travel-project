@@ -54,4 +54,4 @@ def delete(trip_id):
     if trip.creator != g.current_user:
         return jsonify({'message': 'Unauthorized'}), 422
     trip.remove()
-    return 'Trip deleted', 204
+    return '', 204

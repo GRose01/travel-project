@@ -32,7 +32,7 @@ class Trip(db.Model, BaseModel):
     liked_by = db.relationship('User', secondary=likes, backref='likes')
 
 class TripSchema(ma.ModelSchema):
-    categories = fields.Nested('CategorySchema', many=True)
+    categories = fields.Nested('CategorySchema', many=True, only=('name',))
     creator = fields.Nested('UserSchema', only=('id', 'username'))
     liked_by = fields.Nested('UserSchema', many=True, only=('id', 'username'))
 

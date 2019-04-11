@@ -8,7 +8,7 @@ class Category(db.Model, BaseModel):
     name = db.Column(db.String(40), unique=True, nullable=False)
 
 class CategorySchema(ma.ModelSchema):
-    trips = fields.Nested('TripSchema', many=True)
+    trips = fields.Nested('TripSchema', many=True, only=('name',))
 
     class Meta:
         model = Category
