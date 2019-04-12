@@ -56,10 +56,21 @@ class Home extends React.Component{
             <i className="far fa-thumbs-up"></i>
           </div>
         </div>
-      </main>
+      </div>
 
-    )
-  }
+      <div className="contains-categories">
+        <h4>Beach, culture, romantic, food</h4>
+      </div>
+      <div className="contains-like_viewTrip">
+        <h4> 12 RECS </h4>
+        <button>VIEW</button>
+        <i className="far fa-thumbs-up"></i>
+      </div>
+      <div data-skyscanner-widget="SearchWidget"></div>
+      <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+    </main>
+
+  )
 }
 
 
