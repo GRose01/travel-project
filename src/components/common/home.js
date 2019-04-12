@@ -33,6 +33,8 @@ const Home = () => {
         <button>VIEW</button>
         <i className="far fa-thumbs-up"></i>
       </div>
+      <div data-skyscanner-widget="SearchWidget"></div>
+      <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
     </main>
 
   )
