@@ -17,9 +17,8 @@ class TripForm extends React.Component {
 
     this.state = {
 
-
-
     }
+
     this.handleClick = this.handleClick.bind(this)
 
   }
@@ -39,7 +38,7 @@ class TripForm extends React.Component {
   }
 
   storePhotos(photos) {
-    axios.post('/api/user', photos, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
+    axios.post('/api/trips', photos, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
       .then(res => console.log(res))
       .catch(err => console.log(err))
 
@@ -48,9 +47,18 @@ class TripForm extends React.Component {
   getBudgets() {
     axios.get('/api/budgets')
       .then(res => {
-        return res.data.map(cost => ({ value: cost.id, label: cost.name }))
+        return res.data.map(cost => ({ value: cost.id, label: cost.cost }))
       })
       .then(budgets => this.setState({ budgets }))
+      .catch(err => console.log(err))
+  }
+
+  getDurations() {
+    axios.get('/api/durations')
+      .then(res => {
+        return res.data.map(duration => ({ value: duration.id, label: duration.duration }))
+      })
+      .then(durations => this.setState({ durations }))
       .catch(err => console.log(err))
   }
 
@@ -76,11 +84,13 @@ class TripForm extends React.Component {
     this.getCities()
     this.getCategories()
     this.getBudgets()
+    this.getDurations()
   }
 
 
 
   render(){
+    console.log(this.state.budgets)
     return(
       <main>
         <div className="contains-placeSearch">
@@ -89,10 +99,17 @@ class TripForm extends React.Component {
             options={this.state.cities}
           />
         </div>
+        <div className="contains-durationSearch">
+          <Select
+            placeholder="How long for?"
+            options={this.state.durations}
+          />
+        </div>
         <div className="contains-budgetSearch">
           <Select
             placeholder="How much did you spend?"
             options={this.state.budgets}
+
           />
         </div>
         <div className="contains-description_photoUpload">
@@ -107,7 +124,7 @@ class TripForm extends React.Component {
         </div>
         <div className="contains-categorySearch">
           <Select
-            placeholder="Which categories match your trip?"
+            placeholder="What kind of trip was it?"
             name="Categories"
             isMulti
             options={this.state.categories}

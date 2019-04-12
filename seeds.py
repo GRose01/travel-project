@@ -88,8 +88,6 @@ with app.app_context():
     db.session.add(nepal)
     db.session.add(iceland)
 
-
-
 #adding CATEGORIES seeds ONLY
 
     db.session.add(cat1)
