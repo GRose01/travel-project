@@ -2,6 +2,8 @@ from app import app, db
 from models.user import UserSchema
 from models.trip import Trip
 from models.category import Category
+from models.budget import Budget
+from models.duration import Duration
 
 user_schema = UserSchema()
 
@@ -99,6 +101,7 @@ with app.app_context():
     db.session.add(cat7)
     db.session.add(cat8)
     db.session.add(cat9)
+    db.session.add(cat10)
     db.session.add(cat11)
     db.session.add(cat12)
     db.session.add(cat13)
@@ -140,6 +143,59 @@ with app.app_context():
     db.session.add(cat49)
     db.session.add(cat50)
 
+# CREATING BUDGETS
+
+    budget1 = Budget(cost='less than £150')
+    budget2 = Budget(cost='£150 to £250')
+    budget3 = Budget(cost='£250 to £500')
+    budget4 = Budget(cost='£500 to £750')
+    budget5 = Budget(cost='£750 to £1000')
+    budget6 = Budget(cost='£1000 to £1500')
+    budget7 = Budget(cost='£1500 to £2000')
+    budget8 = Budget(cost='£2000 to £2500')
+    budget9 = Budget(cost='£2500 to £3000')
+    budget10 = Budget(cost='£3000 to £3500')
+    budget11 = Budget(cost='£3500 to £4000')
+    budget12 = Budget(cost='£4000 to £5000')
+    budget13 = Budget(cost='£5000 to £6000')
+    budget14 = Budget(cost='£6000 to £7000')
+    budget15 = Budget(cost='£7000+')
+
+    db.session.add(budget1)
+    db.session.add(budget2)
+    db.session.add(budget3)
+    db.session.add(budget4)
+    db.session.add(budget5)
+    db.session.add(budget6)
+    db.session.add(budget7)
+    db.session.add(budget8)
+    db.session.add(budget9)
+    db.session.add(budget11)
+    db.session.add(budget12)
+    db.session.add(budget13)
+    db.session.add(budget14)
+    db.session.add(budget15)
+
+# CREATING DurationSchema
+
+    duration1 = Duration(duration='1 to 3 days')
+    duration2 = Duration(duration='4 to 7 days')
+    duration3 = Duration(duration='7 to 10 days')
+    duration4 = Duration(duration='2 weeks')
+    duration5 = Duration(duration='3 weeks')
+    duration6 = Duration(duration='1 month')
+    duration7 = Duration(duration='6 weeks')
+    duration8 = Duration(duration='2 months or longer')
+
+
+    db.session.add(duration1)
+    db.session.add(duration2)
+    db.session.add(duration3)
+    db.session.add(duration4)
+    db.session.add(duration5)
+    db.session.add(duration6)
+    db.session.add(duration7)
+    db.session.add(duration8)
 
 
     db.session.commit()
