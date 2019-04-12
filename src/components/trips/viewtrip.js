@@ -6,18 +6,27 @@ class ViewTrip extends React.Component {
     super()
 
     this.state = {}
-
   }
+
+<<<<<<< HEAD
+  }
+=======
+>>>>>>> development
   componentDidMount() {
     axios.get(`/api/trips/${this.props.match.params.id}`)
       .then(res => this.setState({ trip: res.data }))
   }
 
   render() {
+<<<<<<< HEAD
+=======
+    const { trip } = this.state
+>>>>>>> development
     return (
       <main>
         <div className="contains-title_photo">
           <div className="title">
+<<<<<<< HEAD
             <h1> </h1>
           </div>
           <div className="budget">
@@ -25,6 +34,15 @@ class ViewTrip extends React.Component {
           </div>
           <div className="duration">
             <h4> 5 days </h4>
+=======
+            <h1>Destination {trip.name}</h1>
+          </div>
+          <div className="budget">
+            <h4> Budget {trip.budget}</h4>
+          </div>
+          <div className="duration">
+            <h4> Duration {trip.number_of_days}</h4>
+>>>>>>> development
           </div>
         </div>
 
@@ -35,6 +53,7 @@ class ViewTrip extends React.Component {
           <img />
         </div>
 
+<<<<<<< HEAD
 
         <div className="contains-categories">
           <h4>categories</h4>
@@ -46,6 +65,23 @@ class ViewTrip extends React.Component {
         </div>
         <div data-skyscanner-widget="SearchWidget"></div>
         <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+=======
+        <div className="recommendations">
+          <h1>Recommendations {trip.description}</h1>
+        </div>
+
+        <div className="map">
+          <h1>Mapbox api</h1>
+        </div>
+
+        <div className="categories">
+          <h1>Categories {trip.categories}</h1>
+        </div>
+
+        <div className="flights">
+          <h1>Flight widget</h1>
+        </div>
+>>>>>>> development
       </main>
     )
   }
