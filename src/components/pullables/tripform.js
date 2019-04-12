@@ -16,10 +16,13 @@ class TripForm extends React.Component {
     super()
 
     this.state = {
+      data: {
 
+      }
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 
   }
 
@@ -37,11 +40,15 @@ class TripForm extends React.Component {
     this.photoUpload()
   }
 
-  storePhotos(photos) {
-    axios.post('/api/trips', photos, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+  handleSubmit(e) {
+    e.preventDefault()
+    axios.post('api/trips', this.state.data, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
+  }
 
+  handleChange({ target: { name, value }}) {
+    const data = {...this.state.data, [name]: value }
+    const error = ''
+    this.setState({ data, error })
   }
 
   getBudgets() {
@@ -87,51 +94,63 @@ class TripForm extends React.Component {
     this.getDurations()
   }
 
-
-
   render(){
-    console.log(this.state.budgets)
+    console.log(this.state)
     return(
       <main>
-        <div className="contains-placeSearch">
-          <Select
-            placeholder="Where did you go?"
-            options={this.state.cities}
-          />
-        </div>
-        <div className="contains-durationSearch">
-          <Select
-            placeholder="How long for?"
-            options={this.state.durations}
-          />
-        </div>
-        <div className="contains-budgetSearch">
-          <Select
-            placeholder="How much did you spend?"
-            options={this.state.budgets}
+        <form
+          onSubmit={this.handleSubmit}
+        >
+          <div className="contains-placeSearch">
+            <Select
+              placeholder="Where did you go?"
+              options={this.state.cities}
+              onChange={this.handleChange}
+            />
+          </div>
 
-          />
-        </div>
-        <div className="contains-description_photoUpload">
-          <input
-            placeholder="Give us a brief summary of the trip."
-            type="text"
-          />
-          <button
-            onClick={this.handleClick}>
-            <i className="far fa-file-image"></i>
-          </button>
-        </div>
-        <div className="contains-categorySearch">
-          <Select
-            placeholder="What kind of trip was it?"
-            name="Categories"
-            isMulti
-            options={this.state.categories}
-          />
-        </div>
-        <SubmitButton />
+          <div className="contains-durationSearch">
+            <Select
+              placeholder="How long for?"
+              options={this.state.durations}
+              onChange={this.handleChange}
+            />
+          </div>
 
+          <div className="contains-budgetSearch">
+            <Select
+              placeholder="How much did you spend?"
+              options={this.state.budgets}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="contains-description_photoUpload">
+            <input
+              placeholder="Give us a brief summary of the trip."
+              type="text"
+              onChange={this.handleChange}
+            />
+
+            <button
+              type="button"
+              onClick={this.handleClick}>
+              <i className="far fa-file-image"></i>
+            </button>
+
+          </div>
+          <div className="contains-categorySearch">
+            <Select
+              placeholder="What kind of trip was it?"
+              name="Categories"
+              isMulti
+              options={this.state.categories}
+              onChange={this.handleChange}
+            />
+          </div>
+          
+          <SubmitButton />
+        </form>
       </main>
     )
   }

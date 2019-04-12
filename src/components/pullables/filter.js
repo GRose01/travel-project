@@ -13,12 +13,21 @@ class Filter extends React.Component{
     this.handleSelect = this.handleSelect.bind(this)
   }
 
-  componentDidMount() {
+  getCategories() {
     axios.get('/api/categories')
       .then(res => {
         return res.data.map(category => ({ value: category.id, label: category.name }))
       })
       .then(categories => this.setState({ categories }))
+      .catch(err => console.log(err))
+  }
+
+  getBudgets() {
+    axios.get('/api/budgets')
+      .then(res => {
+        return res.data.map(cost => ({ value: cost.id, label: cost.cost }))
+      })
+      .then(budgets => this.setState({ budgets }))
       .catch(err => console.log(err))
   }
 
@@ -28,6 +37,10 @@ class Filter extends React.Component{
     this.setState({ data })
   }
 
+  componentDidMount(){
+    this.getBudgets()
+    this.getCategories()
+  }
 
   render() {
     return(
@@ -44,7 +57,9 @@ class Filter extends React.Component{
 
         <div className="contains-budgetSearch">
           <Select
-            placeholder="How much are you looking to spend per person?"/>
+            placeholder="What's your budget?"
+            options={this.state.budgets}
+          />
         </div>
 
         <SubmitButton />
