@@ -5,7 +5,8 @@ import './style.scss'
 
 import Header from './components/common/header'
 import Footer from './components/common/footer'
-import Home from './components/common/home'
+// import Home from './components/common/home'
+import TripForm from './components/pullables/TripForm'
 
 class App extends React.Component {
   constructor() {
@@ -18,9 +19,9 @@ class App extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="wrapper">
         < Header />
-        < Home />
+        < TripForm />
         < Footer />
       </div>
     )
