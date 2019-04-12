@@ -7,14 +7,14 @@ class Home extends React.Component{
     super()
 
     this.state = {
-
+      
     }
   }
 
   getTrips(){
     axios.get('/trips')
       .then(trips => {
-        this.setState({results: trips.data})
+        this.setState({ results: trips.data })
       })
   }
 
