@@ -10,8 +10,8 @@ import Header from './components/common/header'
 import Footer from './components/common/footer'
 import Register from './components/user/register'
 import Login from './components/user/login'
-import ViewTrip from './components/trips/viewtrip'
-import EditTrip from './components/trips/edittrip'
+// import ViewTrip from './components/trips/viewtrip'
+// import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
 import Filter from './components/pullables/filter'
 
@@ -26,10 +26,16 @@ class App extends React.Component {
       <Browser>
         <Header />
         <Switch>
+
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/trips/new" component={CreateTrip} />
+
           <Route path="/login" component={Login} />
           <Route path="/trips/:id/" component={ViewTrip} />
           <Route path="/trips/new" component={CreateTrip} />
           <Route path="/trips/:id/edit" component={EditTrip} />
+
           <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
         </Switch>
@@ -45,5 +51,9 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
+// <Route path="/trips/:id/" component={ViewTrip} />
+
+
+// <Route path="/trips/:id/edit" component={EditTrip} />
 
 // <Route path="/register" component={Register} />

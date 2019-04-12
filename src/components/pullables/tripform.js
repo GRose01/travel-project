@@ -3,7 +3,7 @@ import Select from 'react-select'
 import axios from 'axios'
 
 
-import Auth from '../lib/auth'
+import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
 const fileStackKey = ('Ad9D3qYyQ7m4ExYBv3yMAz')
@@ -45,6 +45,40 @@ class TripForm extends React.Component {
 
   }
 
+  getBudgets() {
+    axios.get('/api/budgets')
+      .then(res => {
+        return res.data.map(cost => ({ value: cost.id, label: cost.name }))
+      })
+      .then(budgets => this.setState({ budgets }))
+      .catch(err => console.log(err))
+  }
+
+  getCities() {
+    axios.get('/api/destinations')
+      .then(res => {
+        return res.data.map(city => ({ value: city.id, label: city.name }))
+      })
+      .then(cities => this.setState({ cities }))
+      .catch(err => console.log(err))
+  }
+
+  getCategories() {
+    axios.get('/api/categories')
+      .then(res => {
+        return res.data.map(category => ({ value: category.id, label: category.name }))
+      })
+      .then(categories => this.setState({ categories }))
+      .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getCities()
+    this.getCategories()
+    this.getBudgets()
+  }
+
+
 
   render(){
     return(
@@ -52,11 +86,14 @@ class TripForm extends React.Component {
         <div className="contains-placeSearch">
           <Select
             placeholder="Where did you go?"
+            options={this.state.cities}
           />
         </div>
         <div className="contains-budgetSearch">
           <Select
-            placeholder="How much did you spend per person?"/>
+            placeholder="How much did you spend?"
+            options={this.state.budgets}
+          />
         </div>
         <div className="contains-description_photoUpload">
           <input
@@ -73,6 +110,7 @@ class TripForm extends React.Component {
             placeholder="Which categories match your trip?"
             name="Categories"
             isMulti
+            options={this.state.categories}
           />
         </div>
         <SubmitButton />
