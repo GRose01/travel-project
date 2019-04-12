@@ -1,55 +1,82 @@
 import React from 'react'
-
+import axios from 'axios'
 
 import SubmitButton from '../pullables/submitbutton'
 
 class Register extends React.Component {
   constructor(){
     super()
+
+    this.state = {
+      data: {
+        username: '',
+        email: '',
+        password: '',
+        passwordConfirmation: ''
+      },
+      errors: {}
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  handleChange({ target: { name , value }}) {
+    const data = {...this.state.data, [name]: value}
+    const error = {...this.state.errors, [name]: ''}
+    this.setState({ data, error })
+  }
 
-  render(){
+  handleSubmit(e) {
+    e.preventDefault()
+    axios.post('api/register', this.state.data)
+      .then(() => this.props.history.push('/api/login'))
+      .catch(() => this.setState({ errors: 'Invalid Input'}))
+  }
+
+  render() {
+    console.log(this.state)
+    console.log(this.state.errors)
     return(
       <main>
-        <div className="contains-emailInput">
-          <input
-            placeholder="email"
-            name=""
-            value=""
-
-          />
-        </div>
-        <div className="contains-usernameInput">
-          <input
-            placeholder="username"
-            name=""
-            value=""
-
-          />
-        </div>
-        <div className="contains-passwordInput">
-          <input
-            placeholder="password"
-            name=""
-            value=""
-
-          />
-        </div>
-        <div className="contains-passwordInput">
-          <input
-            placeholder="retype your password"
-            name=""
-            value=""
-
-          />
-        </div>
-        < SubmitButton />
+        <form onSubmit={this.handleSubmit}>
+          <div className="contains-emailInput">
+            <input
+              placeholder="email"
+              name="email"
+              value={this.state.data.email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="contains-usernameInput">
+            <input
+              placeholder="username"
+              name="username"
+              value={this.state.data.username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="contains-passwordInput">
+            <input
+              placeholder="password"
+              name="password"
+              value={this.state.data.password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="contains-passwordInput">
+            <input
+              placeholder="retype your password"
+              name="password_confirmation"
+              value={this.state.data.password_confirmation}
+              onChange={this.handleChange}
+            />
+          </div>
+          < SubmitButton />
+        </form>
       </main>
     )
   }
 }
-
-
 
 export default Register

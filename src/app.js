@@ -50,10 +50,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
-
-// <Route path="/trips/:id/" component={ViewTrip} />
-
-
-// <Route path="/trips/:id/edit" component={EditTrip} />
-
-// <Route path="/register" component={Register} />
