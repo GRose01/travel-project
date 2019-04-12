@@ -13,6 +13,8 @@ import Login from './components/user/login'
 import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
+import Filter from './components/pullables/filter'
+
 
 
 
@@ -26,6 +28,7 @@ class App extends React.Component {
         <Switch>
 
           <Route path="/trips/:id/" component={ViewTrip} />
+          <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
         </Switch>
         <Footer />

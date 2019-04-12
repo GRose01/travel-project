@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+
+import Map from '../pullables/mapbox'
 class ViewTrip extends React.Component {
   constructor() {
     super()
@@ -34,6 +36,7 @@ class ViewTrip extends React.Component {
           <div className="duration">
             <h4> Duration {trip.number_of_days}</h4>
           </div>
+          <Map />
         </div>
 
         <div className="showPhotos">
