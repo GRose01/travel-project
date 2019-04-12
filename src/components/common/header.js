@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Auth from '../../lib/auth'
 
-console.log(Auth.isAuthenticated)
 
 const Header = () => {
   return (

@@ -14,14 +14,30 @@ class CreateTrip extends React.Component {
     }
   }
 
-  componentDidMount() {
+  // getCities() {
+  //   axios.get('/api/cities')
+  //     .then(res => {
+  //       return res.data.map(city => ({ value: city.id, label: city.name }))
+  //     })
+  //     .then(cities => this.setState({ cities }))
+  //     .catch(err => console.log(err))
+  // }
+
+  getCategories() {
     axios.get('/api/categories')
       .then(res => {
-        return res.data.map(category => ({ value: category._id, label: category.name }))
+        return res.data.map(category => ({ value: category.id, label: category.name }))
       })
       .then(categories => this.setState({ categories }))
       .catch(err => console.log(err))
   }
+
+  // componentDidMount(getCities, getCategories) {
+  //   getCities()
+  //   getCategories()
+  // }
+
+
 
   render() {
     return (

@@ -137,6 +137,7 @@ with app.app_context():
     db.session.add(cat46)
     db.session.add(cat47)
     db.session.add(cat48)
+    db.session.add(cat49)
     db.session.add(cat50)
 
 
