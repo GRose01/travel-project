@@ -26,9 +26,16 @@ class App extends React.Component {
       <Browser>
         <Header />
         <Switch>
+
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/trips/new" component={CreateTrip} />
+
+          <Route path="/login" component={Login} />
+          <Route path="/trips/:id/" component={ViewTrip} />
+          <Route path="/trips/new" component={CreateTrip} />
+          <Route path="/trips/:id/edit" component={EditTrip} />
+
           <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
         </Switch>
@@ -46,4 +53,7 @@ ReactDOM.render(
 
 // <Route path="/trips/:id/" component={ViewTrip} />
 
+
 // <Route path="/trips/:id/edit" component={EditTrip} />
+
+// <Route path="/register" component={Register} />
