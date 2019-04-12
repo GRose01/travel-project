@@ -1,9 +1,11 @@
 $primary: rgb(174,203,54);
 $primary_soft: rgba(174,203,54, 0.5);
 $secondary: rgb(245,245,245);
+$secondary_soft: rgba(245,245,245,0.25);
 
 body {
-  width: 480px;
+  background-image: url("https://cdn.pixabay.com/photo/2016/01/13/01/36/bagan-1137015_960_720.jpg");
+  background-size: cover;
   height: 100vh;
   padding: 0;
   margin: 0;
@@ -15,21 +17,17 @@ body {
   }
 }
 
+
+
 main {
   width: 480px;
   height: 80vh;
   overflow-y: scroll;
-  background-color: $secondary;
+  background-color: $secondary_soft;
+  margin: 0 auto;
+
 }
 
-.trip-card {
-  width: 450px;
-  height: 80vh;
-  margin: 0 auto;
-  overflow-y: scroll;
-  background-color: $primary_soft;
-  border: 1px solid grey;
-}
 
 // COMMON STYLINGS
 .contains-headerElements {
@@ -40,7 +38,6 @@ main {
   color: $secondary;
   width: 100%;
   height: 15vh;
-
 }
 
 .contains-footerElements {
@@ -56,6 +53,15 @@ main {
 }
 
 // HOMEPAGE STYLING
+.trip-card {
+  width: 450px;
+  height: 80vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  background-color: $primary_soft;
+  border: 1px solid grey;
+}
+
 .contains-title_photo {
   display: flex;
   flex-direction: column;

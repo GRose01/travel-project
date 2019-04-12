@@ -15,11 +15,18 @@ class ViewTrip extends React.Component {
 
   render() {
     const { trip } = this.state
+
     return (
       <main>
         <div className="contains-title_photo">
           <div className="title">
-            <h1>Destination {trip.name}</h1>
+            <h1> </h1>
+          </div>
+          <div className="budget">
+            <h4> £100 </h4>
+          </div>
+          <div className="duration">
+            <h4> Destination {trip.name}</h4>
           </div>
           <div className="budget">
             <h4> Budget {trip.budget}</h4>
@@ -36,6 +43,7 @@ class ViewTrip extends React.Component {
           <img />
         </div>
 
+
         <div className="recommendations">
           <h1>Recommendations {trip.description}</h1>
         </div>
@@ -44,7 +52,7 @@ class ViewTrip extends React.Component {
           <h1>Mapbox api</h1>
         </div>
 
-        <div className="categories">
+        <div className="contains-categories">
           <h1>Categories {trip.categories}</h1>
         </div>
 
@@ -55,5 +63,6 @@ class ViewTrip extends React.Component {
     )
   }
 }
+
 
 export default ViewTrip

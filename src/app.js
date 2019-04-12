@@ -8,11 +8,16 @@ import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom'
 import Home from './components/common/home'
 import Header from './components/common/header'
 import Footer from './components/common/footer'
+<<<<<<< HEAD
 import Register from './components/user/register'
 import Login from './components/user/login'
 import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
+=======
+// import Home from './components/common/home'
+import TripForm from './components/pullables/TripForm'
+>>>>>>> development
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +30,7 @@ class App extends React.Component {
 
   render() {
     return(
+<<<<<<< HEAD
       <Browser>
         <main>
           <Header />
@@ -39,6 +45,13 @@ class App extends React.Component {
           <Footer />
         </main>
       </Browser>
+=======
+      <div className="wrapper">
+        < Header />
+        < TripForm />
+        < Footer />
+      </div>
+>>>>>>> development
     )
   }
 }
