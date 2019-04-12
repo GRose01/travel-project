@@ -14,17 +14,11 @@ import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
 import Filter from './components/pullables/filter'
-// import Home from './components/common/home'
+
+
 
 
 class App extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {}
-
-  }
-
 
   render() {
     return(
@@ -32,10 +26,7 @@ class App extends React.Component {
       <Browser>
         <Header />
         <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/trips/new" component={CreateTrip} />
-          <Route path="/trips/:id/edit" component={EditTrip} />
+
           <Route path="/trips/:id/" component={ViewTrip} />
           <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
@@ -51,3 +42,9 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
+
+
+// <Route path="/register" component={Register} />
+// <Route path="/login" component={Login} />
+// <Route path="/trips/new" component={CreateTrip} />
+// <Route path="/trips/:id/edit" component={EditTrip} />

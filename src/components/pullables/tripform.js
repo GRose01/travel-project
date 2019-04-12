@@ -1,6 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
+import axios from 'axios'
 
+
+import Auth from '../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
 const fileStackKey = ('Ad9D3qYyQ7m4ExYBv3yMAz')
@@ -21,8 +24,6 @@ class TripForm extends React.Component {
 
   }
 
-
-
   photoUpload() {
     const options = {
       accept: ['image/*'],
@@ -35,6 +36,13 @@ class TripForm extends React.Component {
 
   handleClick() {
     this.photoUpload()
+  }
+
+  storePhotos(photos) {
+    axios.post('/api/user', photos, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+
   }
 
 
