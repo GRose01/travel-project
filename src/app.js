@@ -13,17 +13,10 @@ import Login from './components/user/login'
 import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
-// import Home from './components/common/home'
+
 
 
 class App extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {}
-
-  }
-
 
   render() {
     return(
@@ -31,10 +24,7 @@ class App extends React.Component {
       <Browser>
         <Header />
         <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/trips/new" component={CreateTrip} />
-          <Route path="/trips/:id/edit" component={EditTrip} />
+
           <Route path="/trips/:id/" component={ViewTrip} />
           <Route exact path="/" component={Home} />
         </Switch>
@@ -49,3 +39,9 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
+
+
+// <Route path="/register" component={Register} />
+// <Route path="/login" component={Login} />
+// <Route path="/trips/new" component={CreateTrip} />
+// <Route path="/trips/:id/edit" component={EditTrip} />

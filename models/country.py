@@ -20,7 +20,7 @@ class Country(db.Model):
     # headofstate = db.Column(db.String)
     # capital = db.Column(db.String)
     # code2 = db.Column(db.Integer, nullable=False)
-    countrycode_code = db.Column(db.string(3))
+    countrycode_code = db.Column(db.String(3))
 
 
 
