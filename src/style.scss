@@ -13,7 +13,11 @@ body {
   border: 3px solid grey;
   font-family: 'Kalam', cursive;
     h4 {
-    font-size: 20px;
+    font-size: 18px;
+    margin: 0 auto;
+    h2 {
+      text-align: center;
+    }
   }
 }
 
@@ -146,3 +150,47 @@ main {
     text-align: center;
   }
 }
+
+
+// TRIP FORM STYLING
+.contains-tripForm {
+  margin: 10px auto;
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  Button {
+    width: 10%;
+    align-self: center;
+  }
+  .contains-description_photoUpload {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 15%;
+    button {
+      display: flex;
+      justify-content: space-around;
+      width: 15%;
+      font-size: 40px;
+      border-radius: 5%;
+    }
+    input {
+      width: 68%;
+      font-size: 15px;
+      font-family: inherit;
+      border-radius: 2%;
+    }
+  }
+  Select {
+    margin-top: 10px;
+  }
+  h2 {
+    color: $primary;
+    letter-spacing: 2px;
+    text-shadow: 0.5px 0.5px 1px black;
+    text-align: center;
+  }
+
+  }
