@@ -44,7 +44,7 @@ class Filter extends React.Component{
 
   render() {
     return(
-      <main>
+      <div className="popup-filter">
         <div className="contains-categorySearch">
           <Select
             placeholder="What type of holiday? (Pick as many as you like)"
@@ -63,7 +63,7 @@ class Filter extends React.Component{
         </div>
 
         <SubmitButton />
-      </main>
+      </div>
     )
   }
 }

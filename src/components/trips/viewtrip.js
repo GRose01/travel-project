@@ -19,7 +19,7 @@ class ViewTrip extends React.Component {
     const { trip } = this.state
 
     return (
-      <main>
+      <div>
         <div className="contains-title_photo">
           <div className="title">
             <h1> </h1>
@@ -62,7 +62,7 @@ class ViewTrip extends React.Component {
         <div className="flights">
           <h1>Flight widget</h1>
         </div>
-      </main>
+      </div>
     )
   }
 }

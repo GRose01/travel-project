@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Auth from '../../lib/auth'
 
 
+
+
 const Header = () => {
   return (
     <div className="contains-headerElements">
@@ -22,10 +24,6 @@ const Header = () => {
       <div className="contains-logo">
         <img src="../../assets/if_logo.png" />
       </div>
-      <div className="contains-filterLink">
-        <Link to='/filter'><i  className="fas fa-filter"></i></Link>
-      </div>
-
     </div>
   )
 }

@@ -1,11 +1,9 @@
-@import 'mobile.scss';
 
 $primary: rgb(174,203,54);
 $primary_soft: rgba(174,203,54, 0.5);
 $secondary: rgb(245,245,245);
 $secondary_soft: rgba(245,245,245,0.25);
-
-
+@media only screen and (max-width: 600px) {
 body {
   background-image: url("https://cdn.pixabay.com/photo/2016/01/13/01/36/bagan-1137015_960_720.jpg");
   background-size: cover;
@@ -31,7 +29,7 @@ a {
 
 
 main {
-  width: 60%;
+  width: 100%;
   height: 80vh;
   overflow-y: scroll;
   background-color: $secondary_soft;
@@ -44,7 +42,7 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: $primary;
+  background-color: red;
   color: $secondary;
   width: 100%;
   height: 15vh;
@@ -216,3 +214,8 @@ main {
   }
 
   }
+
+
+
+// media query closing bracket
+}
