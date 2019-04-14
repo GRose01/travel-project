@@ -11,7 +11,7 @@ class Login extends React.Component {
 
     this.state = {
       data: { username: '', password: '' },
-      error: ''
+      errors: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,13 +20,13 @@ class Login extends React.Component {
 
   handleChange({ target: { name, value }}) {
     const data = {...this.state.data, [name]: value }
-    const error = ''
-    this.setState({ data, error })
+    const errors = ''
+    this.setState({ data, errors })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    axios.post('api/login', this.state.data)
+    axios.post('/api/login', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
         this.props.history.push('/')
@@ -60,7 +60,5 @@ class Login extends React.Component {
     )
   }
 }
-
-
 
 export default Login

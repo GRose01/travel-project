@@ -6,10 +6,10 @@ import './style.scss'
 import { BrowserRouter as Browser, Route, Switch } from 'react-router-dom'
 
 import Home from './components/common/home'
-import Header from './components/common/header'
-import Footer from './components/common/footer'
 import Register from './components/user/register'
 import Login from './components/user/login'
+import Header from './components/common/header'
+import Footer from './components/common/footer'
 import SecureRoute from './components/common/secureRoute'
 import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
@@ -28,7 +28,6 @@ class App extends React.Component {
       <Browser>
         <Header />
         <Switch>
-
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <SecureRoute path="/trips/new" component={CreateTrip} />
@@ -36,7 +35,6 @@ class App extends React.Component {
           <SecureRoute path="/trips/:id/edit" component={EditTrip} />
           <SecureRoute path="/mytrips" component={MyTrips} />
           <SecureRoute path="/wishlist" component={Wishlist} />
-
           <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
         </Switch>

@@ -13,7 +13,7 @@ def register():
     if not is_unique(model=User, key='username', value=data['username']):
         errors['username'] = errors.get('username', []) + ['Username already taken']
 
-    if not is_unique(model=User, key='email', value=data['username']):
+    if not is_unique(model=User, key='email', value=data['email']):
         errors['email'] = errors.get('email', []) + ['email already taken']
 
     if errors:
