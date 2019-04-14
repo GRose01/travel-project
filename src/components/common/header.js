@@ -10,15 +10,17 @@ const Header = () => {
     <div className="contains-headerElements">
       {!Auth.isAuthenticated() &&
       <div className="contains-login_register_profile">
-        <h4> <Link to='/login'>log in</Link> </h4>
-        <h4> <Link to='/register'>register</Link> </h4>
+        <h4 className="desktop"> <Link to='/login'>log in</Link> </h4>
+        <h4 className="desktop"> <Link to='/register'>register</Link> </h4>
+        <i className="fas fa-bars mobile"></i>
       </div>
       }
       {Auth.isAuthenticated() &&
       <div className="contains-login_register_profile">
-        <h4> <Link to='/login'>my trips</Link> </h4>
-        <h4> <Link to='/register'>liked trips</Link> </h4>
-        <h4> <Link to='/register'>add a trip</Link> </h4>
+        <h4 className="desktop"> <Link to='/login'>my trips</Link> </h4>
+        <h4 className="desktop"> <Link to='/register'>liked trips</Link> </h4>
+        <h4 className="desktop"> <Link to='/register'>add a trip</Link> </h4>
+        <i className="fas fa-bars mobile"></i>
       </div>
       }
       <div className="contains-logo">

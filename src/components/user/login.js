@@ -34,8 +34,9 @@ class Login extends React.Component {
   render(){
     return(
       <main>
-        <form onSubmit={this.handleSubmit}>
-          <div className="contains-usernameInput">
+        <form className="contains-authForm" onSubmit={this.handleSubmit}>
+          <h2> log in </h2>
+          <div className="contains-usernameInput contains-input">
             <input
               placeholder="username"
               name="username"
@@ -43,7 +44,7 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="contains-passwordInput">
+          <div className="contains-passwordInput contains-input">
             <input
               placeholder="password"
               name="password"
