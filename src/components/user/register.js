@@ -39,8 +39,9 @@ class Register extends React.Component {
     console.log(this.state.errors)
     return(
       <main>
-        <form onSubmit={this.handleSubmit}>
-          <div className="contains-emailInput">
+        <form className="contains-authForm" onSubmit={this.handleSubmit}>
+          <h2> sign up to itchy feet </h2>
+          <div className="contains-emailInput contains-input">
             <input
               placeholder="email"
               name="email"
@@ -48,7 +49,7 @@ class Register extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="contains-usernameInput">
+          <div className="contains-usernameInput contains-input">
             <input
               placeholder="username"
               name="username"
@@ -56,7 +57,7 @@ class Register extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="contains-passwordInput">
+          <div className="contains-passwordInput contains-input">
             <input
               placeholder="password"
               name="password"
@@ -64,7 +65,7 @@ class Register extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="contains-passwordInput">
+          <div className="contains-passwordInput contains-input">
             <input
               placeholder="retype your password"
               name="password_confirmation"
