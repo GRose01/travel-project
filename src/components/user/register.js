@@ -12,7 +12,7 @@ class Register extends React.Component {
         username: '',
         email: '',
         password: '',
-        passwordConfirmation: ''
+        password_confirmation: ''
       },
       errors: {}
     }
@@ -29,8 +29,8 @@ class Register extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    axios.post('api/register', this.state.data)
-      .then(() => this.props.history.push('/api/login'))
+    axios.post('/api/register', this.state.data)
+      .then(() => this.props.history.push('/login'))
       .catch(() => this.setState({ errors: 'Invalid Input'}))
   }
 

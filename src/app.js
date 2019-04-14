@@ -10,12 +10,13 @@ import Header from './components/common/header'
 import Footer from './components/common/footer'
 import Register from './components/user/register'
 import Login from './components/user/login'
+import SecureRoute from './components/common/secureRoute'
 import ViewTrip from './components/trips/viewtrip'
 import EditTrip from './components/trips/edittrip'
 import CreateTrip from './components/trips/createtrip'
 import Filter from './components/pullables/filter'
 import MyTrips from './components/user/mytrips'
-
+import Wishlist from './components/user/wishlist'
 
 
 
@@ -30,13 +31,11 @@ class App extends React.Component {
 
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/trips/new" component={CreateTrip} />
-
-          <Route path="/login" component={Login} />
-          <Route path="/trips/:id/" component={ViewTrip} />
-          <Route path="/trips/new" component={CreateTrip} />
-          <Route path="/trips/:id/edit" component={EditTrip} />
-          <Route path="/mytrips" component={MyTrips} />
+          <SecureRoute path="/trips/new" component={CreateTrip} />
+          <SecureRoute path="/trips/:id/" component={ViewTrip} />
+          <SecureRoute path="/trips/:id/edit" component={EditTrip} />
+          <SecureRoute path="/mytrips" component={MyTrips} />
+          <SecureRoute path="/wishlist" component={Wishlist} />
 
           <Route path="/filter" component={Filter} />
           <Route exact path="/" component={Home} />
