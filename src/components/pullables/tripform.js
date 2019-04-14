@@ -17,19 +17,24 @@ class TripForm extends React.Component {
 
     this.state = {
       data: {
-
+        description: '',
+        tripType: '',
+        duration: ''
       }
+
     }
 
+    this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
-
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
+  // ++++++++++++++++++++++++PHOTO UPLOAD++++++++++++++++++++++++++++++++
   photoUpload() {
     const options = {
       accept: ['image/*'],
       onFileUploadFinished: file => {
-        this.setState({ image: file.url })
+        this.setState({ images: file.url })
       }
     }
     client.picker(options).open()
@@ -38,18 +43,8 @@ class TripForm extends React.Component {
   handleClick() {
     this.photoUpload()
   }
-
-  handleSubmit(e) {
-    e.preventDefault()
-    axios.post('api/trips', this.state.data, { headers: { Authorization: `Bearer ${Auth.gettoken()}`}})
-  }
-
-  handleChange({ target: { name, value }}) {
-    const data = {...this.state.data, [name]: value }
-    const error = ''
-    this.setState({ data, error })
-  }
-
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // ------------------GET REQUESTS FROM BACKEND -------------------------------
   getBudgets() {
     axios.get('/api/budgets')
       .then(res => {
@@ -58,7 +53,6 @@ class TripForm extends React.Component {
       .then(budgets => this.setState({ budgets }))
       .catch(err => console.log(err))
   }
-
   getDurations() {
     axios.get('/api/durations')
       .then(res => {
@@ -67,7 +61,6 @@ class TripForm extends React.Component {
       .then(durations => this.setState({ durations }))
       .catch(err => console.log(err))
   }
-
   getCities() {
     axios.get('/api/destinations')
       .then(res => {
@@ -76,7 +69,6 @@ class TripForm extends React.Component {
       .then(cities => this.setState({ cities }))
       .catch(err => console.log(err))
   }
-
   getCategories() {
     axios.get('/api/categories')
       .then(res => {
@@ -85,25 +77,32 @@ class TripForm extends React.Component {
       .then(categories => this.setState({ categories }))
       .catch(err => console.log(err))
   }
-
   componentDidMount() {
     this.getCities()
     this.getCategories()
     this.getBudgets()
     this.getDurations()
   }
+  // ---------------------------------------------------------------------------
 
-  render(){
+  handleChange (e) {
+    this.setState({data: {description: e.target.value}})
+    console.log({data: {description: e.target.value}})
     console.log(this.state)
+  }
+
+  handleSelect(e) {
+    this.setState({data: {tripType: e.target.value}})
+    console.log({data: {tripType: e.target.value}})
+  }
+
+  render() {
     return(
-      <form className="contains-tripForm"
-        onSubmit={this.handleSubmit}
-      >
+      <form className="contains-tripForm">
         <h2> Tell us about your trip </h2>
         <div className="contains-placeSearch">
           <Select
-            name="city"
-            value={this.state.destination}
+            name="desinations"
             placeholder="Where did you go?"
             options={this.state.cities}
           />
@@ -111,18 +110,18 @@ class TripForm extends React.Component {
 
         <div className="contains-durationSearch">
           <Select
-            name=""
-            value=""
             placeholder="How long for?"
+            name="duration"
+            value={this.state.duration}
+            onChange={this.handleSelect}
             options={this.state.durations}
           />
         </div>
 
         <div className="contains-budgetSearch">
           <Select
-            name=""
-            value=""
             placeholder="How much did you spend?"
+            name="budget"
             options={this.state.budgets}
           />
         </div>
@@ -130,32 +129,34 @@ class TripForm extends React.Component {
         <div className="contains-description_photoUpload">
           <input
             placeholder="Give us a brief summary of the trip."
+            name="description"
             type="text"
+            value={this.state.data.description}
+            onChange={this.handleChange}
+
+
           />
           <button
             type="button"
             onClick={this.handleClick}>
             <i className="fas fa-camera"></i>
-            <i className="fas fa-plus"></i>
           </button>
         </div>
 
         <div className="contains-categorySearch">
           <Select
             name="Categories"
-            value={this.state.data.category}
             placeholder="What kind of trip was it?"
             isMulti
             options={this.state.categories}
+
           />
         </div>
 
         <SubmitButton />
       </form>
-
     )
   }
 }
-
 
 export default TripForm
