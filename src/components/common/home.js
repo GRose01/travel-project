@@ -52,7 +52,7 @@ class Home extends React.Component{
               </div>
               <div className="contains-budget_duration">
                 <div className="budget">
-                  <h4>Budget: <br />{trip.budget.cost}</h4>
+                  <h4>{trip.budget}</h4>
                 </div>
                 <div className="duration">
                   <h4>Duration:<br />{trip.duration.duration}</h4>
