@@ -57,7 +57,7 @@ def delete(trip_id):
     return '', 204
 
 # likes
-@api.route('/planets/<int:trip_id>/like', methods=['PUT'])
+@api.route('/trips/<int:trip_id>/like', methods=['GET'])
 @secure_route
 def like(trip_id):
     trip = Trip.query.get(trip_id)

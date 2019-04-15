@@ -5,18 +5,18 @@ const moment = require('moment')
 
 // import Map from '../pullables/mapbox'
 
-let tripId = null
-
-function checkLike(value) {
-  console.log(' like value -->', value)
-  if (value === tripId) {
-    console.log('true')
-    return true
-  } else {
-    console.log('false')
-    return false
-  }
-}
+// let tripId = null
+//
+// function checkLike(value) {
+//   console.log(' like value -->', value)
+//   if (value === tripId) {
+//     console.log('true')
+//     return true
+//   } else {
+//     console.log('false')
+//     return false
+//   }
+// }
 
 class ViewTrip extends React.Component {
   constructor() {
@@ -26,37 +26,30 @@ class ViewTrip extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/trips/${this.props.match.params.id}`)
-      .then(res => this.setState({ trip: res.data }))
+    this.getData()
   }
 
-  handleLike(value, trip) {
-    let data = null
-    data = { ...this.state.data.liked_by, likedTrip: trip.concat(value) }
-    this.setState({ data }), function() {
-      console.log('liked by? -->', this.state.data.liked_by)
-      axios.put(`/api/${Auth.getPayload().sub}`,
-        this.state.data,
-        { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
-        .then((res) => {
-          if (res.data.errors) {
-            this.setState({ sent: 'false' })
-          } else {
-            this.setState({ sent: 'true' })
-          }
-        })
-        .catch(err => this.setState({ errors: err.response.data.errors }))
-    }
+  getData() {
+    axios.get(`/api/trips/${this.props.match.params.id}`)
+      .then(res => this.setState({ trip: res.data, user: res.data.creator }))
+  }
+
+  handleLike({ id }) {
+    axios.get(`/api/trips/${id}/like`, { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(() => this.getData())
+      .catch(err => console.log(err.response))
   }
 
   render() {
 
     if (!this.state.trip) return null
-    const { trip } = this.state
-    console.log(trip)
+    const { trip, user } = this.state
+    const me = Auth.getPayload().sub
+    console.log('trip', trip, user)
+    console.log(trip.liked_by)
 
-    const { likedTrip } = this.state
-    tripId = this.props.match.params.id
+    // const { likedTrip } = this.state
+    // tripId = this.props.match.params.id
 
     return (
       <div>
@@ -89,16 +82,16 @@ class ViewTrip extends React.Component {
         <div className="contains-like_viewTrip">
           <h4>{trip.liked_by.length} likes</h4>
           <div>
-            {likedTrip && likedTrip.some(checkLike) &&
+            {trip.liked_by && trip.liked_by.some(like => like.id === me) &&
               <div><a>
                 <i className="far fa-thumbs-up"></i>
                 <span>Liked</span>
               </a></div>
             }
-            {likedTrip && !likedTrip.some(checkLike) &&
-              <div><a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
+            {trip.liked_by && !trip.liked_by.some(like => like.id === me) &&
+              <div><a>
                 <i className="far fa-thumbs-up"></i>
-                <span>Like</span>
+                <span onClick={() => this.handleLike(trip)}>Like</span>
               </a></div>
             }
           </div>

@@ -38,8 +38,8 @@ class Header extends React.Component {
         }
         {Auth.isAuthenticated() &&
           <div className="contains-login_register_profile">
-            <h4 className="desktop"> <Link to='/'>my trips</Link> </h4>
-            <h4 className="desktop"> <Link to='/register'>liked trips</Link> </h4>
+            <h4 className="desktop"> <Link to='/mytrips'>my trips</Link> </h4>
+            <h4 className="desktop"> <Link to='/wishlist'>liked trips</Link> </h4>
             <h4 className="desktop"> <Link to='/trips/new'>add a trip</Link> </h4>
             <i className="fas fa-bars mobile"></i>
           </div>
