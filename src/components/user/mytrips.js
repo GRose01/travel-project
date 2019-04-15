@@ -14,7 +14,9 @@ class MyTrips extends React.Component{
 
   componentDidMount() {
     axios.all([
-      axios.get('/api/user', { headers: { Authorization: `Bearer ${Auth.getToken()}`}}),
+      axios.get('/api/user', {
+        headers: { Authorization: `Bearer ${Auth.getToken()}`}
+      }),
       axios.get('/api/trips')
     ])
       .then(res => {
@@ -45,10 +47,10 @@ class MyTrips extends React.Component{
 
             <div className="contains-budget_duration">
               <div className="budget">
-                <h4>Budget: <br />£{trip.budget}</h4>
+                <h4>Budget: <br />{trip.budget}</h4>
               </div>
               <div className="duration">
-                <h4>Number of Days:<br />{trip.number_of_days}</h4>
+                <h4>Duration:<br />{trip.duration}</h4>
               </div>
             </div>
 

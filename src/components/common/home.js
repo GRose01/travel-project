@@ -66,7 +66,7 @@ class Home extends React.Component{
 
               <div className="contains-budget_duration">
                 <div className="budget">
-                  <h4>Budget: <br />£{trip.budget}</h4>
+                  <h4>Budget: <br />{trip.budget}</h4>
                 </div>
                 <div className="duration">
                   <h4>Number of Days:<br />{trip.number_of_days}</h4>
