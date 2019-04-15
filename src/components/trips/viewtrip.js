@@ -58,10 +58,10 @@ class ViewTrip extends React.Component {
             <h4>{trip.destination}</h4>
           </div>
           <div className="budget">
-            <h4>{trip.budget}</h4>
+            <h4>{trip.budget.cost}</h4>
           </div>
           <div className="duration">
-            <h4>{trip.duration}</h4>
+            <h4>{trip.duration.duration}</h4>
           </div>
         </div>
 
