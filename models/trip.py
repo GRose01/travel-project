@@ -26,9 +26,9 @@ class Trip(db.Model, BaseModel):
     images = db.Column(db.String(500))
     description = db.Column(db.String(128), nullable=False)
     creator_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
-    budget = db.relationship('Budget')
+    budget = db.relationship('Budget', backref='trip_budgets')
     budget_id = db.Column(db.Integer, db.ForeignKey('budget_table.id'))
-    duration = db.relationship('Duration')
+    duration = db.relationship('Duration', backref='duration_trips')
     duration_id = db.Column(db.Integer, db.ForeignKey('duration_table.id'))
     categories = db.relationship('Category', secondary=trips_categories, backref='trips')
     creator = db.relationship('User', backref='created_trips')
@@ -38,8 +38,8 @@ class TripSchema(ma.ModelSchema):
     categories = fields.Nested('CategorySchema', many=True, only=('name',))
     creator = fields.Nested('UserSchema', only=('id', 'username'))
     liked_by = fields.Nested('UserSchema', many=True, only=('id', 'username'))
-    budget = fields.Nested('BudgetSchema', only='cost')
-    duration = fields.Nested('DurationSchema', only='duration')
+    budget = fields.Nested('BudgetSchema', only=('cost'))
+    duration = fields.Nested('DurationSchema', only=('duration', 'id'))
 
     class Meta:
         model = Trip

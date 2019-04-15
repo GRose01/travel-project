@@ -17,7 +17,7 @@ class TripForm extends React.Component {
 
     this.state = {
       data: {
-        destination: '',
+        name: '',
         description: '',
         budget: '',
         categories: [],
@@ -108,7 +108,7 @@ class TripForm extends React.Component {
 
   handleDestinationSelect (e) {
     console.log(e)
-    const data = {...this.state.data, destination: e.label}
+    const data = {...this.state.data, name: e.label}
     this.setState({data}, () => console.log(this.state.data, 'destination'))
     // console.log({data: {tripType: e.target.value}})
   }

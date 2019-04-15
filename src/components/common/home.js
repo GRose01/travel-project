@@ -2,31 +2,23 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 const moment = require('moment')
-
 import Filter from '../pullables/filter'
 // import Auth from '../../lib/auth'
-
 import Popup from 'reactjs-popup'
-
-
 class Home extends React.Component{
   constructor(){
     super()
-
     this.state = {
       data: {},
       user: {},
       trips: [],
       errors: {}
     }
-
   }
-
   componentDidMount() {
     this.getTrips()
     // this.getUser()
   }
-
   getTrips(){
     axios.get('/api/trips')
       .then(trips => {
@@ -34,24 +26,19 @@ class Home extends React.Component{
       })
       .catch(err => console.log(err))
   }
-
   // getUser() {
   //   axios.get(`/api/${Auth.getPayload().sub}`)
   //     .then(res => this.setState({ data: res.data.user }))
   //     .catch(err => console.log(err))
   // }
-
-
   render(){
     console.log('first render', this.state)
-
     if (!this.state.trips.length) return null
     return(
       <div>
         <main>
           {!this.state.trips && <p> Finding trips ...</p>}
           {this.state.trips && this.state.trips.map(trip => (
-
             <div key={trip.id} className="trip-card">
               <div className="contains-title_photo">
                 <div className="title">
@@ -63,27 +50,22 @@ class Home extends React.Component{
                   <img src={trip.images} alt={trip.name}/>
                 </div>
               </div>
-
               <div className="contains-budget_duration">
                 <div className="budget">
-                  <h4>Budget: <br />£{trip.budget}</h4>
+                  <h4>Budget: <br />{trip.budget.cost}</h4>
                 </div>
                 <div className="duration">
-                  <h4>Number of Days:<br />{trip.number_of_days}</h4>
+                  <h4>Number of Days:<br />{trip.duration.duration}</h4>
                 </div>
               </div>
-
               <div className="contains-categories">
                 <h4>{trip.categories.map((category, i) => (
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
-
               <div className="contains-like_viewTrip">
                 <h4>{trip.liked_by.length} likes</h4>
                 <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
               </div>
-
-
               <div className="card-content">
                 <h6>Created by {trip.creator.username} <br/> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
               </div>
@@ -99,9 +81,7 @@ class Home extends React.Component{
     )
   }
 }
-
 export default Home
-
 // <div className="contains-like_viewTrip">
 //   <h4>{this.state.trips.liked_by.length} Likes</h4>
 //   <button>VIEW</button>

@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request, g
 from models.trip import Trip, TripSchema
 from models.category import Category
+from models.duration import Duration
+from models.budget import Budget
 from lib.secure_route import secure_route
 
 
@@ -24,12 +26,24 @@ def show(trip_id):
 @api.route('/trips', methods=['POST'])
 @secure_route
 def create():
-    trip, errors = trip_schema.load(request.get_json())
+    data = request.get_json()
+    budget = Budget.query.get(2)
+    duration = Duration.query.get(2)
+    trip, errors = trip_schema.load(data)
+    print(trip, budget, duration)
+    # trip, errors = trip_schema.load(data)
     if errors:
         print(errors)
-        return jsonify(errors), 422
-    trip.save()
-    return trip_schema.jsonify(trip)
+    #     return jsonify(errors), 422
+
+
+    # trip.duration = duration
+
+    # # categories = list(data['categories'])
+    # print(duration, budget)
+    # trip.save()
+    # return trip_schema.jsonify(trip)
+    return '', 200
 
 
 @api.route('/trips/<int:trip_id>', methods=['PUT'])
