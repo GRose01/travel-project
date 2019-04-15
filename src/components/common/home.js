@@ -55,7 +55,9 @@ class Home extends React.Component{
                   <h4>{trip.budget}</h4>
                 </div>
                 <div className="duration">
+
                   <h4>{trip.duration.duration}</h4>
+
                 </div>
               </div>
               <div className="contains-categories">
