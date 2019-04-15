@@ -22,7 +22,7 @@ class TripForm extends React.Component {
         budget: '',
         categories: [],
         duration: '',
-        photos: []
+        photos: ''
       }
 
     }
@@ -154,7 +154,6 @@ class TripForm extends React.Component {
           <Select
             placeholder="How much did you spend?"
             name="budget"
-            // value={this.state.data.budget}
             options={this.state.budgets}
             onChange={this.handleBudgetSelect}
           />

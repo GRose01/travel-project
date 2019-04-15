@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 const moment = require('moment')
 
 import Filter from '../pullables/filter'
@@ -72,7 +73,7 @@ class Home extends React.Component{
               </div>
               <div className="contains-like_viewTrip">
                 <h4> Number of Likes </h4>
-                <button>VIEW</button>
+                <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
                 <i className="far fa-thumbs-up"></i>
               </div>
 
