@@ -3,7 +3,7 @@ import Select from 'react-select'
 import axios from 'axios'
 
 
-// import Auth from '../../lib/auth'
+import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
 const fileStackKey = ('Ad9D3qYyQ7m4ExYBv3yMAz')
@@ -33,6 +33,7 @@ class TripForm extends React.Component {
     this.handleBudgetSelect = this.handleBudgetSelect.bind(this)
     this.handleCategorySelect = this.handleCategorySelect.bind(this)
     this.handleDestinationSelect = this.handleDestinationSelect.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   // ++++++++++++++++++++++++PHOTO UPLOAD++++++++++++++++++++++++++++++++
@@ -91,6 +92,15 @@ class TripForm extends React.Component {
   }
   // ---------------------------------------------------------------------------
 
+  handleSubmit(e) {
+    e.preventDefault()
+    const data = {...this.state.data, image: this.state.image}
+    axios.post('/api/trips', data,
+      { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(res => console.log(res))
+      .catch(err => console.log(err.response))
+  }
+
   handleChange (e) {
     const data = {...this.state.data, description: e.target.value }
     this.setState({data})
@@ -105,32 +115,31 @@ class TripForm extends React.Component {
 
   handleDurationSelect(e) {
     console.log(e)
-    const data = {...this.state.data, duration: e.label}
+    const data = {...this.state.data, duration: e.value}
     this.setState({data}, () => console.log(this.state.data, 'duration'))
     // console.log({data: {tripType: e.target.value}})
   }
 
   handleBudgetSelect(e) {
-    const data = {...this.state.data, budget: e.label}
+    const data = {...this.state.data, budget: e.value}
     this.setState({data})
   }
 
   handleCategorySelect(e) {
-    console.log(e)
-    const arr = []
+    const categories = []
     e.forEach(val => {
-      const categories = {id: val.value, category: val.label}
-      arr.push(categories)
-      const data = {...this.state.data, categories: arr }
+      categories.push(val.value)
+      console.log(categories, 'THIS IS ARR')
+      const data = {...this.state.data, categories }
       this.setState({data})
     })
   }
 
   render() {
-    console.log(this.state, 'JUST STATE')
+    // console.log(this.state, 'JUST STATE')
     console.log(this.state.data, 'DATA')
     return(
-      <form className="contains-tripForm">
+      <form className="contains-tripForm" onSubmit={this.handleSubmit}>
         <h2> Tell us about your trip </h2>
         <div className="contains-placeSearch">
           <Select
@@ -159,6 +168,17 @@ class TripForm extends React.Component {
             onChange={this.handleBudgetSelect}
           />
         </div>
+        <div className="contains-categorySearch">
+          <Select
+            name="Categories"
+            placeholder="What kind of trip was it?"
+            isMulti
+            options={this.state.categories}
+            onChange={this.handleCategorySelect}
+
+          />
+        </div>
+
         <div className="contains-description">
           <input
             placeholder="Give us a brief summary of the trip."
@@ -183,17 +203,6 @@ class TripForm extends React.Component {
             onClick={this.handleClick}>
             <i className="fas fa-camera"></i>
           </button>
-        </div>
-
-        <div className="contains-categorySearch">
-          <Select
-            name="Categories"
-            placeholder="What kind of trip was it?"
-            isMulti
-            options={this.state.categories}
-            onChange={this.handleCategorySelect}
-
-          />
         </div>
 
         <SubmitButton />
