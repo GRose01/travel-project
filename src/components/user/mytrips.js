@@ -14,13 +14,13 @@ class MyTrips extends React.Component{
 
   componentDidMount() {
     axios.all([
-      axios.get(`/api//${Auth.getPayload().sub}`),
+      axios.get(`/api/${Auth.getPayload().sub}`),
       axios.get('/api/trips')
     ])
       .then(res => {
         const [user, trips] = res
         trips.data.filter(trip => {
-          return trip.id.include(user.data.user)
+          return trip.id.include(user.data.creator)
         })
         this.setState({ trips, user})
       })
@@ -57,7 +57,7 @@ class MyTrips extends React.Component{
                 <span key={i}>{category.name}, </span>))}</h4>
             </div>
             <div className="contains-like_viewTrip">
-              <h4> Number of Likes </h4>
+              <h4>{trip.liked_by.length} likes</h4>
               <button>VIEW</button>
               <i className="far fa-thumbs-up"></i>
             </div>

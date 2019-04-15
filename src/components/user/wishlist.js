@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Auth from '../../lib/auth'
-
 const moment = require('moment')
 
 
@@ -26,7 +25,7 @@ class Wishlist extends React.Component {
           }))
         })
         this.setState({ wishlistTrips, user })
-        console.log(this.state)
+        console.log(this.state.trips)
       })
   }
   render() {
@@ -60,7 +59,7 @@ class Wishlist extends React.Component {
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
               <div className="contains-like_viewTrip">
-                <h4>{trip.liked_by.length} likes </h4>
+                <h4>{trip.liked_by.length} likes</h4>
                 <button>VIEW TRIP</button>
               </div>
 

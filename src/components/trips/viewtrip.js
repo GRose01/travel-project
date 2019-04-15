@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
+const moment = require('moment')
 
-import Map from '../pullables/mapbox'
+// import Map from '../pullables/mapbox'
 
 let tripId = null
 
@@ -31,8 +32,9 @@ class ViewTrip extends React.Component {
 
   handleLike(value, trip) {
     let data = null
-    data = { ...this.state.data, likedTrip: trip.concat(value) }
+    data = { ...this.state.data.liked_by, likedTrip: trip.concat(value) }
     this.setState({ data }), function() {
+      console.log('liked by? -->', this.state.data.liked_by)
       axios.put(`/api/${Auth.getPayload().sub}`,
         this.state.data,
         { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
@@ -56,7 +58,6 @@ class ViewTrip extends React.Component {
     const { likedTrip } = this.state
     tripId = this.props.match.params.id
 
-
     return (
       <div>
         <div className="contains-title_photo">
@@ -69,7 +70,6 @@ class ViewTrip extends React.Component {
           <div className="duration">
             <h4>{trip.duration}</h4>
           </div>
-
         </div>
 
         <div className="showPhotos">
@@ -77,46 +77,47 @@ class ViewTrip extends React.Component {
         </div>
 
         <div className="recommendations">
-          <h1> {trip.description}</h1>
-        </div>
-
-        <div className="map">
-          <h1>Mapbox api</h1>
+          <h1>{trip.description}</h1>
         </div>
 
         <div className="contains-categories">
           {trip.categories.map((category, i) =>
             <h5 key={i}> {category.name}</h5>
           )}
-
-        </div>
-
-        <div className="flights">
-          <h1>Flight widget</h1>
         </div>
 
         <div className="contains-like_viewTrip">
-          <h4>{this.state.trips.liked_by.length} Likes</h4>
-          <button>VIEW</button>
+          <h4>{trip.liked_by.length} likes</h4>
           <div>
             {likedTrip && likedTrip.some(checkLike) &&
-              <a>
+              <div><a>
                 <i className="far fa-thumbs-up"></i>
                 <span>Liked</span>
-              </a>
+              </a></div>
             }
             {likedTrip && !likedTrip.some(checkLike) &&
-              <a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
+              <div><a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
                 <i className="far fa-thumbs-up"></i>
                 <span>Like</span>
-              </a>
+              </a></div>
             }
           </div>
+        </div>
+
+        <div className="card-content">
+          <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
         </div>
       </div>
     )
   }
 }
 
-
 export default ViewTrip
+
+
+// <div className="flights">
+//   <h1>Flight widget</h1>
+// </div>
+// <div className="map">
+//   <h1>Mapbox api</h1>
+// </div>
