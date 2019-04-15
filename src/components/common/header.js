@@ -39,6 +39,7 @@ class Header extends React.Component {
         {!Auth.isAuthenticated() &&
           <div className="contains-login_register_profile">
             <h4 className="desktop"> <Link to='/login'>log in</Link> </h4>
+            <h3 className="desktop">|</h3>
             <h4 className="desktop"> <Link to='/register'>register</Link> </h4>
             <Popup trigger={<button className="mobile popupButton"> <i className="fas fa-bars mobile"></i></button>} position="right top center">
               <div className="navbarPopup" >
@@ -54,7 +55,9 @@ class Header extends React.Component {
         {Auth.isAuthenticated() &&
           <div className="contains-login_register_profile">
             <h4 className="desktop"> <Link to='/'>my trips</Link> </h4>
+            <h3 className="desktop">|</h3>
             <h4 className="desktop"> <Link to='/wishlist'>liked trips</Link> </h4>
+            <h3 className="desktop">|</h3>
             <h4 className="desktop"> <Link to='/trips/new'>add a trip</Link> </h4>
             <Popup trigger={<button className="mobile popupButton"> <i className="fas fa-bars mobile"></i></button>} position="right top">
               <div className="navbarPopup"  >
