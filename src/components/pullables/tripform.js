@@ -22,7 +22,7 @@ class TripForm extends React.Component {
         budget: '',
         categories: [],
         duration: '',
-        photos: ''
+        image: ''
       }
 
     }
@@ -40,7 +40,7 @@ class TripForm extends React.Component {
     const options = {
       accept: ['image/*'],
       onFileUploadFinished: file => {
-        this.setState({ images: file.url })
+        this.setState({ image: file.url })
       }
     }
     client.picker(options).open()
@@ -127,7 +127,8 @@ class TripForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.data)
+    console.log(this.state, 'JUST STATE')
+    console.log(this.state.data, 'DATA')
     return(
       <form className="contains-tripForm">
         <h2> Tell us about your trip </h2>
@@ -158,17 +159,25 @@ class TripForm extends React.Component {
             onChange={this.handleBudgetSelect}
           />
         </div>
-
-        <div className="contains-description_photoUpload">
+        <div className="contains-description">
           <input
             placeholder="Give us a brief summary of the trip."
             name="description"
             type="text"
             value={this.state.data.description}
             onChange={this.handleChange}
-
-
           />
+        </div>
+
+        <div className="contains-photoUpload">
+          <div
+            style={{
+              backgroundImage: `url(${this.state.image})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'noRepeat'
+            }}
+            className="contains-uploadedPhoto">
+          </div>
           <button
             type="button"
             onClick={this.handleClick}>
