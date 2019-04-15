@@ -55,3 +55,13 @@ def delete(trip_id):
         return jsonify({'message': 'Unauthorized'}), 422
     trip.remove()
     return '', 204
+
+# likes
+@api.route('/planets/<int:trip_id>/like', methods=['PUT'])
+@secure_route
+def like(trip_id):
+    trip = Trip.query.get(trip_id)
+    user = g.current_user
+    trip.liked_by.append(user)
+    trip.save()
+    return trip_schema.jsonify(trip), 201

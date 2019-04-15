@@ -14,7 +14,7 @@ class MyTrips extends React.Component{
 
   componentDidMount() {
     axios.all([
-      axios.get(`/api/user/${Auth.getPayload().sub}`),
+      axios.get(`/api//${Auth.getPayload().sub}`),
       axios.get('/api/trips')
     ])
       .then(res => {

@@ -9,23 +9,24 @@ const moment = require('moment')
 class Wishlist extends React.Component {
   constructor() {
     super()
+
     this.state = {}
   }
   componentDidMount() {
     axios.all([
-      axios.get(`/api/user/${Auth.getPayload().sub}`),
+      axios.get(`/api/${Auth.getPayload().sub}`),
       axios.get('/api/trips')
     ])
       .then(res => {
         const [ user, trips ] = res
-        console.log(user, trips)
-        console.log(user.data.user.pinnedReviews)
+        console.log('user and trips -->', user, trips)
         const wishlistTrips = trips.data.filter(trip => {
-          return (user.data.user.pinnedRecipes.some(wishlistTrip => {
+          return (user.data.trips.some(wishlistTrip => {
             return trip.id.includes(wishlistTrip)
           }))
         })
         this.setState({ wishlistTrips, user })
+        console.log(this.state)
       })
   }
   render() {
@@ -42,15 +43,15 @@ class Wishlist extends React.Component {
               </div>
 
               <div className="">
-                <img src={trip.image} alt={trip.name}/>
+                <img src={trip.images} alt={trip.name}/>
               </div>
 
               <div className="contains-budget_duration">
                 <div className="budget">
-                  <h4>Budget: <br />£{trip.budget}</h4>
+                  <h4>Budget: <br />{trip.budget}</h4>
                 </div>
                 <div className="duration">
-                  <h4>Number of Days:<br />{trip.number_of_days}</h4>
+                  <h4>Number of Days:<br />{trip.duration}</h4>
                 </div>
               </div>
 
@@ -59,12 +60,12 @@ class Wishlist extends React.Component {
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
               <div className="contains-like_viewTrip">
-                <h4> Number of Likes </h4>
+                <h4>{trip.liked_by.length} likes </h4>
                 <button>VIEW TRIP</button>
               </div>
 
               <div className="card-content">
-                <h6>Created by {trip.user.username} at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
+                <h6>Created by {trip.username} at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
               </div>
             </Link>
           </div>
