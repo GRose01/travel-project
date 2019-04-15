@@ -14,15 +14,15 @@ class MyTrips extends React.Component{
 
   componentDidMount() {
     axios.all([
-      axios.get(`/api/${Auth.getPayload().sub}`),
+      axios.get('/api/user', { headers: { Authorization: `Bearer ${Auth.getToken()}`}}),
       axios.get('/api/trips')
     ])
       .then(res => {
-        const [user, trips] = res
-        trips.data.filter(trip => {
-          return trip.id.include(user.data.creator)
+        const [user, tripsOne] = res
+        const trips = tripsOne.data.filter(trip => {
+          return trip.creator.id === user.id
         })
-        this.setState({ trips, user})
+        this.setState({ trips, user: user.data })
       })
       .catch(err => console.log(err))
   }
@@ -63,7 +63,7 @@ class MyTrips extends React.Component{
             </div>
 
             <div className="card-content">
-              <h6>Created at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
+              <h6>Created by {trip.creator.username} <br/> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
             </div>
           </div>
         ))}

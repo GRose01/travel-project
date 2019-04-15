@@ -54,7 +54,7 @@ class Header extends React.Component {
         }
         {Auth.isAuthenticated() &&
           <div className="contains-login_register_profile">
-            <h4 className="desktop"> <Link to='/'>my trips</Link> </h4>
+            <h4 className="desktop"> <Link to='/mytrips'>my trips</Link> </h4>
             <h3 className="desktop">|</h3>
             <h4 className="desktop"> <Link to='/wishlist'>liked trips</Link> </h4>
             <h3 className="desktop">|</h3>
@@ -69,7 +69,7 @@ class Header extends React.Component {
           </div>
         }
         <div className="contains-logo">
-          <img src="../../assets/if_logo.png" />
+          <Link to='/'><img src="../../assets/if_logo.png" /> </Link>
         </div>
       </div>
     )

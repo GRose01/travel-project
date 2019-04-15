@@ -31,7 +31,7 @@ class Trip(db.Model, BaseModel):
     duration = db.relationship('Duration')
     duration_id = db.Column(db.Integer, db.ForeignKey('duration_table.id'))
     categories = db.relationship('Category', secondary=trips_categories, backref='trips')
-    creator = db.relationship('User', backref='created_trip')
+    creator = db.relationship('User', backref='created_trips')
     liked_by = db.relationship('User', secondary=likes, backref='likes')
 
 class TripSchema(ma.ModelSchema):

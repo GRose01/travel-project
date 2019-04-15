@@ -81,12 +81,11 @@ class Home extends React.Component{
               <div className="contains-like_viewTrip">
                 <h4>{trip.liked_by.length} likes</h4>
                 <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
-                <i className="far fa-thumbs-up"></i>
               </div>
 
 
               <div className="card-content">
-                <h6>Created by ... <br /> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
+                <h6>Created by {trip.creator.username} <br/> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
               </div>
             </div>
           ))}
