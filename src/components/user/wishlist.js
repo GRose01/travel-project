@@ -16,7 +16,7 @@ class Wishlist extends React.Component {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(res => {
-        console.log(this.setState({ likes: res.data.likes }))
+        this.setState({ likes: res.data.likes })
       })
   }
 
