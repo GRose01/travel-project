@@ -40,12 +40,8 @@ class ViewTrip extends React.Component {
         </div>
 
         <div className="showPhotos">
-          <img />
-          <img />
-          <img />
-          <img />
+          <img src={trip.images[0]}/>
         </div>
-
 
         <div className="recommendations">
           <h1>Recommendations {trip.description}</h1>

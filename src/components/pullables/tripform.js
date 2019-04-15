@@ -17,16 +17,22 @@ class TripForm extends React.Component {
 
     this.state = {
       data: {
+        destination: '',
         description: '',
-        tripType: '',
-        duration: ''
+        budget: '',
+        categories: [],
+        duration: '',
+        photos: []
       }
 
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.handleSelect = this.handleSelect.bind(this)
+    this.handleDurationSelect = this.handleDurationSelect.bind(this)
+    this.handleBudgetSelect = this.handleBudgetSelect.bind(this)
+    this.handleCategorySelect = this.handleCategorySelect.bind(this)
+    this.handleDestinationSelect = this.handleDestinationSelect.bind(this)
   }
 
   // ++++++++++++++++++++++++PHOTO UPLOAD++++++++++++++++++++++++++++++++
@@ -86,17 +92,42 @@ class TripForm extends React.Component {
   // ---------------------------------------------------------------------------
 
   handleChange (e) {
-    this.setState({data: {description: e.target.value}})
-    console.log({data: {description: e.target.value}})
-
+    const data = {...this.state.data, description: e.target.value }
+    this.setState({data})
   }
 
-  handleSelect(e) {
-    this.setState({data: {tripType: e.target.value}})
-    console.log({data: {tripType: e.target.value}})
+  handleDestinationSelect (e) {
+    console.log(e)
+    const data = {...this.state.data, destination: e.label}
+    this.setState({data}, () => console.log(this.state.data, 'destination'))
+    // console.log({data: {tripType: e.target.value}})
+  }
+
+  handleDurationSelect(e) {
+    console.log(e)
+    const data = {...this.state.data, duration: e.label}
+    this.setState({data}, () => console.log(this.state.data, 'duration'))
+    // console.log({data: {tripType: e.target.value}})
+  }
+
+  handleBudgetSelect(e) {
+    const data = {...this.state.data, budget: e.label}
+    this.setState({data})
+  }
+
+  handleCategorySelect(e) {
+    console.log(e)
+    const arr = []
+    e.forEach(val => {
+      const categories = {id: val.value, category: val.label}
+      arr.push(categories)
+      const data = {...this.state.data, categories: arr }
+      this.setState({data})
+    })
   }
 
   render() {
+    console.log(this.state.data)
     return(
       <form className="contains-tripForm">
         <h2> Tell us about your trip </h2>
@@ -105,6 +136,7 @@ class TripForm extends React.Component {
             name="desinations"
             placeholder="Where did you go?"
             options={this.state.cities}
+            onChange={this.handleDestinationSelect}
           />
         </div>
 
@@ -113,7 +145,7 @@ class TripForm extends React.Component {
             placeholder="How long for?"
             name="duration"
             value={this.state.duration}
-            onChange={this.handleSelect}
+            onChange={this.handleDurationSelect}
             options={this.state.durations}
           />
         </div>
@@ -122,7 +154,9 @@ class TripForm extends React.Component {
           <Select
             placeholder="How much did you spend?"
             name="budget"
+            // value={this.state.data.budget}
             options={this.state.budgets}
+            onChange={this.handleBudgetSelect}
           />
         </div>
 
@@ -149,6 +183,7 @@ class TripForm extends React.Component {
             placeholder="What kind of trip was it?"
             isMulti
             options={this.state.categories}
+            onChange={this.handleCategorySelect}
 
           />
         </div>
