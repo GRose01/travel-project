@@ -27,7 +27,7 @@ def create():
     trip, errors = trip_schema.load(request.get_json())
     if errors:
         print(errors)
-        return jsonify(errors, 422)
+        return jsonify(errors), 422
     trip.save()
     return trip_schema.jsonify(trip)
 
@@ -39,7 +39,7 @@ def update(trip_id):
     trip, errors = trip_schema.load(request.get_json(), instance=trip, partial=True)
     if errors:
         print(errors)
-        return jsonify(errors, 422)
+        return jsonify(errors), 422
 
     if trip.creator != g.current_user:
         return jsonify({'message': 'Unauthorized'}), 422

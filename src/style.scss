@@ -24,7 +24,7 @@ $secondary_soft: rgba(245,245,245,0.25);
 
 
 body {
-  background-image: url("https://cdn.pixabay.com/photo/2016/01/13/01/36/bagan-1137015_960_720.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_960_720.jpg");
   background-size: cover;
   @media screen and (max-width: 720px) {
     background-image: url("https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
@@ -78,7 +78,7 @@ main {
   .contanins-logo {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     width: 50%;
   }
   .contains-login_register_profile {
@@ -95,6 +95,38 @@ main {
     font-size: 40px;
   }
 }
+
+.popup-content {
+  background-color: $primary_soft;
+  margin: 0;
+
+  h4 {
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 18px;
+    background-color: $primary_soft;
+    margin-top: 3px;
+    padding: 3px;
+    text-align: center;
+    }
+  h4:hover {
+    background-color: $secondary_soft;
+  }
+  }
+
+
+
+.popupButton {
+  font-size: 150%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+  background-color: $primary;
+  color: $secondary;
+  text-shadow: .5px .5px black;
+}
+
 
 .contains-footerElements {
   display: flex;

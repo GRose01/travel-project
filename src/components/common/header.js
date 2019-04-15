@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/auth'
+import Popup from 'reactjs-popup'
 
 
 
@@ -26,6 +27,12 @@ class Header extends React.Component {
     }
   }
 
+  handleClick() {
+    if (!Auth.isAuthenticated) {
+      console.log('helllo')
+    }
+  }
+
   render() {
     return (
       <div className="contains-headerElements">
@@ -33,15 +40,29 @@ class Header extends React.Component {
           <div className="contains-login_register_profile">
             <h4 className="desktop"> <Link to='/login'>log in</Link> </h4>
             <h4 className="desktop"> <Link to='/register'>register</Link> </h4>
-            <i className="fas fa-bars mobile"></i>
+            <Popup trigger={<button className="mobile popupButton"> <i className="fas fa-bars mobile"></i></button>} position="right top center">
+              <div className="navbarPopup" >
+                <h4 className="mobile navbarPopupText"> <Link to='/login'>log in</Link> </h4>
+                <h4 className="mobile navbarPopupText"> <Link to='/register'>register</Link> </h4>
+              </div>
+            </Popup>
+
+
+
           </div>
         }
         {Auth.isAuthenticated() &&
           <div className="contains-login_register_profile">
             <h4 className="desktop"> <Link to='/'>my trips</Link> </h4>
-            <h4 className="desktop"> <Link to='/register'>liked trips</Link> </h4>
+            <h4 className="desktop"> <Link to='/wishlist'>liked trips</Link> </h4>
             <h4 className="desktop"> <Link to='/trips/new'>add a trip</Link> </h4>
-            <i className="fas fa-bars mobile"></i>
+            <Popup trigger={<button className="mobile popupButton"> <i className="fas fa-bars mobile"></i></button>} position="right top">
+              <div className="navbarPopup"  >
+                <h4 className="mobile navbarPopupText"> <Link to='/'>my trips</Link> </h4>
+                <h4 className="mobile navbarPopupText"> <Link to='/wishlist'>liked trips</Link> </h4>
+                <h4 className="mobile navbarPopupText"> <Link to='/trips/new'>add a trip</Link> </h4>
+              </div>
+            </Popup>
           </div>
         }
         <div className="contains-logo">
@@ -51,5 +72,7 @@ class Header extends React.Component {
     )
   }
 }
+
+
 
 export default withRouter(Header)
