@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 const moment = require('moment')
 
 import Filter from '../pullables/filter'
+// import Auth from '../../lib/auth'
 
 import Popup from 'reactjs-popup'
 
@@ -13,12 +14,17 @@ class Home extends React.Component{
     super()
 
     this.state = {
-      trips: []
+      data: {},
+      user: {},
+      trips: [],
+      errors: {}
     }
+
   }
 
   componentDidMount() {
     this.getTrips()
+    // this.getUser()
   }
 
   getTrips(){
@@ -28,14 +34,19 @@ class Home extends React.Component{
       })
       .catch(err => console.log(err))
   }
-  //
+
   // getUser() {
-  //   axios.get(`/api/user/${Auth.getPayload().sub}`)
+  //   axios.get(`/api/${Auth.getPayload().sub}`)
   //     .then(res => this.setState({ data: res.data.user }))
+  //     .catch(err => console.log(err))
   // }
 
+
   render(){
-    console.log(this.state)
+    // tripId = this.props.match.params.id
+    // const { likedTrip } = this.state.data
+    console.log('first render', this.state)
+
     if (!this.state.trips.length) return null
     return(
       <div>
@@ -51,10 +62,7 @@ class Home extends React.Component{
                 <div className="contains-tripDescription">
                 </div>
                 <div className="showPhotos">
-                  <img src={trip.image} alt={trip.name}/>
-                  <img />
-                  <img />
-                  <img />
+                  <img src={trip.images} alt={trip.name}/>
                 </div>
               </div>
 
@@ -71,11 +79,13 @@ class Home extends React.Component{
                 <h4>{trip.categories.map((category, i) => (
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
+
               <div className="contains-like_viewTrip">
                 <h4> Number of Likes </h4>
                 <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
                 <i className="far fa-thumbs-up"></i>
               </div>
+
 
               <div className="card-content">
                 <h6>Created by ... <br /> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
@@ -94,3 +104,22 @@ class Home extends React.Component{
 }
 
 export default Home
+
+// <div className="contains-like_viewTrip">
+//   <h4>{this.state.trips.liked_by.length} Likes</h4>
+//   <button>VIEW</button>
+//   <div>
+//     {likedTrip && likedTrip.some(checkLike) &&
+//       <a>
+//         <i className="far fa-thumbs-up"></i>
+//         <span>Liked</span>
+//       </a>
+//     }
+//     {likedTrip && !likedTrip.some(checkLike) &&
+//       <a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
+//         <i className="far fa-thumbs-up"></i>
+//         <span>Like</span>
+//       </a>
+//     }
+//   </div>
+// </div>

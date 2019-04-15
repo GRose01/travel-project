@@ -1,8 +1,22 @@
 import React from 'react'
 import axios from 'axios'
-
+import Auth from '../../lib/auth'
 
 import Map from '../pullables/mapbox'
+
+let tripId = null
+
+function checkLike(value) {
+  console.log(' like value -->', value)
+  if (value === tripId) {
+    console.log('true')
+    return true
+  } else {
+    console.log('false')
+    return false
+  }
+}
+
 class ViewTrip extends React.Component {
   constructor() {
     super()
@@ -15,10 +29,34 @@ class ViewTrip extends React.Component {
       .then(res => this.setState({ trip: res.data }))
   }
 
+  handleLike(value, trip) {
+    let data = null
+    data = { ...this.state.data, likedTrip: trip.concat(value) }
+    this.setState({ data }), function() {
+      axios.put(`/api/${Auth.getPayload().sub}`,
+        this.state.data,
+        { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
+        .then((res) => {
+          if (res.data.errors) {
+            this.setState({ sent: 'false' })
+          } else {
+            this.setState({ sent: 'true' })
+          }
+        })
+        .catch(err => this.setState({ errors: err.response.data.errors }))
+    }
+  }
+
   render() {
+
     if (!this.state.trip) return null
     const { trip } = this.state
     console.log(trip)
+
+    const { likedTrip } = this.state
+    tripId = this.props.match.params.id
+
+
     return (
       <div>
         <div className="contains-title_photo">
@@ -55,6 +93,25 @@ class ViewTrip extends React.Component {
 
         <div className="flights">
           <h1>Flight widget</h1>
+        </div>
+
+        <div className="contains-like_viewTrip">
+          <h4>{this.state.trips.liked_by.length} Likes</h4>
+          <button>VIEW</button>
+          <div>
+            {likedTrip && likedTrip.some(checkLike) &&
+              <a>
+                <i className="far fa-thumbs-up"></i>
+                <span>Liked</span>
+              </a>
+            }
+            {likedTrip && !likedTrip.some(checkLike) &&
+              <a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
+                <i className="far fa-thumbs-up"></i>
+                <span>Like</span>
+              </a>
+            }
+          </div>
         </div>
       </div>
     )
