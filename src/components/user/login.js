@@ -10,7 +10,7 @@ class Login extends React.Component {
     super()
 
     this.state = {
-      data: { username: '', password: '' },
+      data: { email: '', password: '' },
       errors: ''
     }
 
@@ -41,15 +41,15 @@ class Login extends React.Component {
           <h2> log in </h2>
           <div className="contains-usernameInput contains-input">
             <input
-              placeholder="username"
-              name="username"
-              value={this.state.data.username}
+              placeholder="Email"
+              name="email"
+              value={this.state.data.email}
               onChange={this.handleChange}
             />
           </div>
           <div className="contains-passwordInput contains-input">
             <input
-              placeholder="password"
+              placeholder="Password"
               name="password"
               value={this.state.data.password}
               onChange={this.handleChange}
