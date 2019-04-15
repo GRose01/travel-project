@@ -32,7 +32,6 @@ class Home extends React.Component{
   //     .catch(err => console.log(err))
   // }
   render(){
-    console.log('first render', this.state)
     if (!this.state.trips.length) return null
     return(
       <div>
@@ -40,24 +39,26 @@ class Home extends React.Component{
           {!this.state.trips && <p> Finding trips ...</p>}
           {this.state.trips && this.state.trips.map(trip => (
             <div key={trip.id} className="trip-card">
-              <div className="contains-title_photo">
-                <div className="title">
-                  <h1>{trip.name}</h1>
-                </div>
-                <div className="contains-tripDescription">
-                </div>
-                <div className="showPhotos">
-                  <img src={trip.images} alt={trip.name}/>
-                </div>
+              <div className="contains-title_description">
+                <h1>{trip.name}</h1>
+                <p>{trip.description}</p>
+              </div>
+              <div
+                className="showPhotos"
+                style={{
+                  backgroundImage: `url(${trip.images})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'noRepeat'
+                }}
+              >
+              .
               </div>
               <div className="contains-budget_duration">
                 <div className="budget">
                   <h4>{trip.budget}</h4>
                 </div>
                 <div className="duration">
-
                   <h4>{trip.duration.duration}</h4>
-
                 </div>
               </div>
               <div className="contains-categories">
@@ -65,10 +66,10 @@ class Home extends React.Component{
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
               <div className="contains-like_viewTrip">
-                <h4>{trip.liked_by.length} likes</h4>
-                <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
+                <p>{trip.liked_by.length} <i className="far fa-heart"></i></p>
+                <Link to={`trips/${trip.id}`}> <button>VIEW THIS TRIP</button> </Link>
               </div>
-              <div className="card-content">
+              <div className="contains-tripUserDetails">
                 <h6>Created by {trip.creator.username} <br/> at {moment(trip.createdAt).format('hh:mm')} on {moment(trip.createdAt).format('Do MMMM YYYY')}</h6>
               </div>
             </div>

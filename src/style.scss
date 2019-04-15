@@ -24,10 +24,10 @@ $secondary_soft: rgba(245,245,245,0.25);
 
 
 body {
-  background-image: url("https://cdn.pixabay.com/photo/2014/08/15/11/29/sea-418742_960_720.jpg");
+  background-image: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1008&q=80");
   background-size: cover;
   @media screen and (max-width: 720px) {
-    background-image: url("https://i.pinimg.com/originals/17/8b/12/178b120039056063c3d512bbcb416105.jpg");
+    background-image: url("https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
     background-size: cover;
   }
   height: 100vh;
@@ -151,6 +151,9 @@ main {
 
 
 .trip-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 80%;
   @media screen and (max-width: 720px) {
     width: 95%;
@@ -160,71 +163,104 @@ main {
   background-color: $primary_soft;
   border: 3px solid black;
   margin-top: 10px;
-  .contains-title_photo {
+  .contains-title_description {
     display: flex;
     flex-direction: column;
     align-content: center;
     width: 100%;
-    height: 50%;
-
-    .showPhotos {
-      overflow-x: scroll;
-      height: 70%;
-      width: 100%;
-      img {
-        position: relative;
-      }
-    }
-    .title{
-      text-align: center;
-      height: 30%;
-      width: 100%;
+    height: 20%;
+    text-align: center;
       h1 {
         text-shadow: 1px 0.5px $secondary;
+        margin: 3px 0 0 0;
+        @media screen and (max-width: 720px) {
+          font-size: 22px;
+        }
+      }
+      p {
+        font-size: 16px;
+        margin: 0;
+        @media screen and (max-width: 720px) {
+          font-size: 14px;
+        }
       }
     }
+    .showPhotos {
+      align-self: center;
+      height: 50%;
+      width: 70%;
+      border-radius: 1%;
+      margin-bottom: 5px;
+        @media screen and (max-width: 720px) {
+          width: 90%;
+        }
+      }
+      .contains-budget_duration {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-content: center;
+        width: 100%;
+        height: 10%;
+        .duration, .budget {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          font-size: 20px;
+          width: 50%;
+          height: 100%;
+          text-align: center;
+          background-color: $secondary_soft;
+        }
+      }
+      .contains-categories {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 15%;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: $primary_soft;
+      }
+      .contains-like_viewTrip {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 10%;
+        width: 100%;
+        background-color: $secondary_soft;
+        button {
+          font-size: 100%;
+          font-family: inherit;
+          border: 1.5px dashed black;
+          padding: 5px;
+          background-color: rgba(174,203,54, 0.3);
+        }
+        button:hover {
+          border: 2px solid black;
+          cursor: pointer;
+        }
+      }
+      .contains-tripUserDetails {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 10%;
+        h6 {
+          width: 100%;
+          text-align: center;
+        }
+      }
   }
-}
 
-.contains-budget_duration {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  height: 10%;
-  .duration, .budget {
-    font-size: 20px;
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    background-color: $primary_soft;
-  }
-}
 
-.contains-categories {
-  width: 100%;
-  height: 15%;
-  text-align: center;
-  text-transform: uppercase;
-}
 
-.contains-like_viewTrip {
-  display: flex;
-  flex-direction: row;
-  height: 20%;
-  width: 100%;
-  justify-content: space-around;
-  align-content: center;
-  text-align: center;
-  .fa-thumbs-up {
-    font-size: 50px;
-  }
-  h4, button, .fa-thumbs-up {
-    height: 50%;
-    width: 30%;
-    text-align: center;
-  }
-}
+
+
+
+
 
 
   .contains-filterLink {
@@ -337,5 +373,136 @@ main {
     text-shadow: 0.5px 0.5px 1px black;
     text-align: center;
   }
+}
 
+// VIEW TRIP
+.viewtrip-topThird {
+  border: 2px solid black;
+  display:flex;
+  flex-direction: row;
+  margin: 0 auto;
+  height: 49%;
+  width: 90%;
+  .viewtrip-photos {
+    width: 75%;
+    height: 100%;
   }
+  .viewtrip-topRight {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    .viewtrip-hasIcon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      width: 100%;
+      font-size: 50px;
+      border: 1px solid black;
+      background-color: $primary_soft;
+    }
+    .viewtrip-likes {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      width: 100%;
+      border: 1px solid black;
+      background-color: $secondary_soft;
+    }
+  }
+}
+.viewtrip-midThird {
+  border: 2px solid black;
+  border-top: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: 20%;
+  width: 90%;
+  .viewtrip-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $primary_soft;
+    height: 25%;
+    width: 100%;
+    h3 {
+      margin: 0;
+    }
+  }
+  .viewtrip-destination {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $secondary_soft;
+    height: 25%;
+    width: 100%;
+    h2 {
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+  .viewtrip-description {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $primary_soft;
+    height: 25%;
+    width: 100%;
+    p {
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+  .viewtrip-budget_duration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $secondary_soft;
+    height: 25%;
+    width: 100%;
+  }
+}
+.viewtrip-bottomThird {
+  border: 2px solid black;
+  border-top: 0;
+  background-color: $primary_soft;
+  display:flex;
+  flex-direction: row;
+  margin: 0 auto;
+  height: 29%;
+  width: 90%;
+  .viewtrip-mapbox {
+    height: 100%;
+    width: 65%;
+  }
+  .viewtrip-bottomLeft {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 35%;
+    .contains-tripUserDetails {
+      height: 50%;
+      text-align: center;
+      background-color: $secondary_soft;
+      h6 {
+        font-size: 12px;
+      }
+    }
+    .viewtrip-hasIcon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      width: 100%;
+      font-size: 50px;
+      border: 1px solid black;
+      background-color: $primary_soft;
+    }
+  }
+}

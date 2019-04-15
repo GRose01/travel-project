@@ -52,55 +52,74 @@ class ViewTrip extends React.Component {
     // tripId = this.props.match.params.id
 
     return (
-      <div>
-        <div className="contains-title_photo">
-          <div className="destination">
-            <h4>{trip.destination}</h4>
+      <main>
+        <div className="viewtrip-topThird">
+          <div className="viewtrip-photos"
+            style={{
+              backgroundImage: `url(${trip.images})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'noRepeat'
+            }}>
           </div>
-          <div className="budget">
-            <h4>{trip.budget}</h4>
-          </div>
-          <div className="duration">
-            <h4>{trip.duration.duration}</h4>
-          </div>
-        </div>
-
-        <div className="showPhotos">
-          <img src={trip.images}/>
-        </div>
-
-        <div className="recommendations">
-          <h1>{trip.description}</h1>
-        </div>
-
-        <div className="contains-categories">
-          {trip.categories.map((category, i) =>
-            <h5 key={i}> {category.name}</h5>
-          )}
-        </div>
-
-        <div className="contains-like_viewTrip">
-          <h4>{trip.liked_by.length} likes</h4>
-          <div>
-            {trip.liked_by && trip.liked_by.some(like => like.id === me) &&
-              <div><a>
-                <i className="far fa-thumbs-up"></i>
-                <span>Liked</span>
-              </a></div>
-            }
-            {trip.liked_by && !trip.liked_by.some(like => like.id === me) &&
-              <div><a>
-                <i className="far fa-thumbs-up"></i>
-                <span onClick={() => this.handleLike(trip)}>Like</span>
-              </a></div>
-            }
+          <div className="viewtrip-topRight">
+            <div className="viewtrip-hasIcon">
+              <i className="fas fa-globe-americas"></i>
+            </div>
+            <div className="viewtrip-likes">
+              <h4>{trip.liked_by.length} likes</h4>
+              <div>
+                {trip.liked_by && trip.liked_by.some(like => like.id === me) &&
+                  <div><a>
+                    <i className="far fa-thumbs-up"></i>
+                    <span>Liked</span>
+                  </a></div>
+                }
+                {trip.liked_by && !trip.liked_by.some(like => like.id === me) &&
+                  <div><a>
+                    <i className="far fa-thumbs-up"></i>
+                    <span onClick={() => this.handleLike(trip)}>Like</span>
+                  </a></div>
+                }
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="card-content">
-          <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
+        <div className="viewtrip-midThird">
+          <div className="viewtrip-categories">
+            {trip.categories.map((category, i) =>
+              <h3 key={i}> {category.name}</h3>
+            )}
+          </div>
+          <div className="viewtrip-destination">
+            <h2>{trip.name}</h2>
+          </div>
+          <div className="viewtrip-description">
+            <p>{trip.description}</p>
+          </div>
+          <div className="viewtrip-budget_duration">
+            <div className="viewtrip-budget">
+              <h4>{trip.budget}</h4>
+            </div>
+            <div className="viewtrip-duration">
+              <h4>{trip.duration.duration}</h4>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div className="viewtrip-bottomThird">
+          <div className="viewtrip-bottomLeft">
+            <div className="viewtrip-hasIcon">
+              <i className="fas fa-plane"></i>
+            </div>
+            <div className="contains-tripUserDetails">
+              <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
+            </div>
+          </div>
+          <div className="viewtrip-mapbox">
+          </div>
+        </div>
+      </main>
     )
   }
 }
