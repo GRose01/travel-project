@@ -43,7 +43,7 @@ class Wishlist extends React.Component {
                   <h4>{trip.budget.cost}</h4>
                 </div>
                 <div className="duration">
-                  <h4>Number of Days:<br />{trip.duration.duration}</h4>
+                  <h4>{trip.duration.duration}</h4>
                 </div>
               </div>
 

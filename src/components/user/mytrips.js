@@ -43,12 +43,15 @@ class MyTrips extends React.Component{
               <div className="title">
                 <h1>{trip.name}</h1>
               </div>
+              <div className="description">
+                <p>{trip.description}</p>
+              </div>
             </div>
 
             <div className="contains-budget_duration">
               <div className="budget">
 
-                <h4>{trip.budget.cost}</h4>
+                <h4>{trip.budget}</h4>
               </div>
               <div className="duration">
                 <h4>{trip.duration.duration}</h4>
