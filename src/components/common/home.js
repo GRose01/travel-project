@@ -43,8 +43,6 @@ class Home extends React.Component{
 
 
   render(){
-    // tripId = this.props.match.params.id
-    // const { likedTrip } = this.state.data
     console.log('first render', this.state)
 
     if (!this.state.trips.length) return null
@@ -81,7 +79,7 @@ class Home extends React.Component{
               </div>
 
               <div className="contains-like_viewTrip">
-                <h4> Number of Likes </h4>
+                <h4>{trip.liked_by.length} likes</h4>
                 <Link to={`trips/${trip.id}`}> <button>VIEW</button> </Link>
                 <i className="far fa-thumbs-up"></i>
               </div>
