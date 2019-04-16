@@ -11,7 +11,7 @@ class FlightWidget extends React.Component {
   render() {
     const location = "'"+this.props.destination+"'"
     return (
-      <div
+      <div className="contains-skyscanner"
         data-skyscanner-widget="SearchWidget"
         data-locale="en-GB"
         data-params="colour:solar;fontColour:#000;buttonColour:rgba(174,203,54, 0.5);buttonFontColour:#fff;"
