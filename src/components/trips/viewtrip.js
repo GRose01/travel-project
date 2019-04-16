@@ -10,9 +10,10 @@ class ViewTrip extends React.Component {
     super()
 
     this.state = {
-      toFlightSide: false,
-      toMapSide: false
+      toFlightSide: false
     }
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClickToMap = this.handleClickToMap.bind(this)
   }
 
   componentDidMount() {
@@ -28,6 +29,13 @@ class ViewTrip extends React.Component {
     axios.get(`/api/trips/${id}/like`, { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
       .then(() => this.getData())
       .catch(err => console.log(err.response))
+  }
+
+  handleClick() {
+    this.setState({...this.state, toFlightSide: true }, console.log(this.state))
+  }
+  handleClickToMap() {
+    this.setState({...this.state, toFlightSide: false }, console.log(this.state))
   }
 
   render() {
@@ -50,7 +58,7 @@ class ViewTrip extends React.Component {
           </div>
           <div className="viewtrip-topRight">
             <div className="viewtrip-hasIcon">
-              <i className="fas fa-globe-americas"></i>
+              <i onClick={this.handleClickToMap} className="fas fa-globe-americas"></i>
             </div>
             <div className="viewtrip-likes">
               <h4>{trip.liked_by.length} likes</h4>
@@ -93,25 +101,28 @@ class ViewTrip extends React.Component {
             </div>
           </div>
         </div>
+        {this.state.toFlightSide === true ?
+          <div className="flights viewtrip-bottomThird">
+            <FlightWidget destination={this.state.trip.name} />
+          </div>
+          :
+          <div className="viewtrip-bottomThird">
+            <div className="viewtrip-bottomLeft">
+              <div className="viewtrip-hasIcon">
+                <i onClick={this.handleClick} className="fas fa-plane"></i>
+              </div>
+              <div className="contains-tripUserDetails">
+                <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
+              </div>
+            </div>
+            <div className="viewtrip-mapbox">
+              <Map
+                destination={trip.name}
+              />
+            </div>
 
-        <div className="viewtrip-bottomThird">
-          <div className="viewtrip-bottomLeft">
-            <div className="viewtrip-hasIcon">
-              <i className="fas fa-plane"></i>
-            </div>
-            <div className="contains-tripUserDetails">
-              <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
-            </div>
           </div>
-          <div className="viewtrip-mapbox">
-            <Map
-              destination={trip.name}
-            />
-          </div>
-        </div>
-        <div className="flights">
-          <FlightWidget destination={this.state.trip.name} />
-        </div>
+        }
       </main>
     )
   }

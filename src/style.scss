@@ -478,6 +478,11 @@ main {
   margin: 0 auto;
   height: 29%;
   width: 90%;
+  .contains-skyscanner {
+    width: 100%;
+    height:100%;
+    align-self: stretch;
+  }
   .viewtrip-mapbox {
     height: 100%;
     width: 65%;
