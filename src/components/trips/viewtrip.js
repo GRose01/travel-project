@@ -1,22 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
+// import Flights from '../pullables/flights'
 const moment = require('moment')
 
-// import Map from '../pullables/mapbox'
-
-// let tripId = null
-//
-// function checkLike(value) {
-//   console.log(' like value -->', value)
-//   if (value === tripId) {
-//     console.log('true')
-//     return true
-//   } else {
-//     console.log('false')
-//     return false
-//   }
-// }
 
 class ViewTrip extends React.Component {
   constructor() {
@@ -47,9 +34,6 @@ class ViewTrip extends React.Component {
     const me = Auth.getPayload().sub
     console.log('trip', trip, user)
     console.log(trip.liked_by)
-
-    // const { likedTrip } = this.state
-    // tripId = this.props.match.params.id
 
     return (
       <main>
@@ -118,6 +102,11 @@ class ViewTrip extends React.Component {
           </div>
           <div className="viewtrip-mapbox">
           </div>
+          <div className="flights">
+            <h1>Flight widget</h1>
+            <div data-skyscanner-widget="SearchWidget" data-locale="en-GB" data-params="colour:solar;fontColour:#000;buttonColour:rgba(174,203,54, 0.5);buttonFontColour:#fff;"></div>
+            <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+          </div>
         </div>
       </main>
     )
@@ -125,11 +114,3 @@ class ViewTrip extends React.Component {
 }
 
 export default ViewTrip
-
-
-// <div className="flights">
-//   <h1>Flight widget</h1>
-// </div>
-// <div className="map">
-//   <h1>Mapbox api</h1>
-// </div>

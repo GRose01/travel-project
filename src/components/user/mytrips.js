@@ -12,22 +12,6 @@ class MyTrips extends React.Component{
     }
   }
 
-  // componentDidMount() {
-  //   axios.all([
-  //     axios.get('/api/user', {
-  //       headers: { Authorization: `Bearer ${Auth.getToken()}`}
-  //     }),
-  //     axios.get('/api/trips')
-  //   ])
-  //     .then(res => {
-  //       const [user, tripsOne] = res
-  //       const trips = tripsOne.data.filter(trip => {
-  //         return trip.creator.id === user.id
-  //       })
-  //       this.setState({ trips, user: user.data })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
 
   componentDidMount() {
     axios.get('/api/user', {
@@ -48,15 +32,13 @@ class MyTrips extends React.Component{
         {!this.state.myTrips && <p> Finding trips ...</p>}
         {this.state.myTrips && this.state.myTrips.map(trip => (
 
-          <div key={trip.id} className="trip-card">
+          <div key={trip.id} className="mytrip-card">
             <Link to={`/trips/${trip.id}`} >
-              <div className="contains-title_photo">
-                <div className="title">
-                  <h1>{trip.name}</h1>
-                </div>
+              <div className="contains-title">
+                <h1>{trip.name}</h1>
               </div>
 
-              <div className="">
+              <div className="images">
                 <img src={trip.images} alt={trip.name}/>
               </div>
 
@@ -86,3 +68,5 @@ class MyTrips extends React.Component{
 }
 
 export default MyTrips
+
+// <img src={trip.images} alt={trip.name}/>
