@@ -2,11 +2,10 @@ import React from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
-
 import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
-const fileStackKey = ('Ad9D3qYyQ7m4ExYBv3yMAz')
+const fileStackKey = process.env.FILESTACK_KEY
 
 import * as filestack from 'filestack-js'
 const client = filestack.init(fileStackKey)
@@ -19,9 +18,9 @@ class TripForm extends React.Component {
       data: {
         name: '',
         description: '',
-        budget: '',
-        categories: [],
-        duration: '',
+        budget_id: '',
+        category_id: [],
+        duration_id: '',
         image: ''
       }
 
@@ -115,13 +114,13 @@ class TripForm extends React.Component {
 
   handleDurationSelect(e) {
     console.log(e)
-    const data = {...this.state.data, duration: e.value}
+    const data = {...this.state.data, duration_id: e.value}
     this.setState({data}, () => console.log(this.state.data, 'duration'))
     // console.log({data: {tripType: e.target.value}})
   }
 
   handleBudgetSelect(e) {
-    const data = {...this.state.data, budget: e.value}
+    const data = {...this.state.data, budget_id: e.value}
     this.setState({data})
   }
 
@@ -129,7 +128,6 @@ class TripForm extends React.Component {
     const categories = []
     e.forEach(val => {
       categories.push(val.value)
-      console.log(categories, 'THIS IS ARR')
       const data = {...this.state.data, categories }
       this.setState({data})
     })

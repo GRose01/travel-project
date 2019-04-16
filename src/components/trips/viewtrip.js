@@ -5,25 +5,14 @@ const moment = require('moment')
 
 import Map from '../pullables/mapbox'
 
-// let tripId = null
-//
-// function checkLike(value) {
-//   console.log(' like value -->', value)
-//   if (value === tripId) {
-//     console.log('true')
-//     return true
-//   } else {
-//     console.log('false')
-//     return false
-//   }
-// }
-
 class ViewTrip extends React.Component {
   constructor() {
     super()
 
-    this.state = {}
-
+    this.state = {
+      toFlightSide: false,
+      toMapSide: false
+    }
   }
 
   componentDidMount() {
@@ -34,7 +23,6 @@ class ViewTrip extends React.Component {
     axios.get(`/api/trips/${this.props.match.params.id}`)
       .then(res => this.setState({ trip: res.data, user: res.data.creator }))
   }
-
 
   handleLike({ id }) {
     axios.get(`/api/trips/${id}/like`, { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
@@ -129,11 +117,3 @@ class ViewTrip extends React.Component {
   }
 }
 export default ViewTrip
-
-
-// <div className="flights">
-//   <h1>Flight widget</h1>
-// </div>
-// <div className="map">
-//   <h1>Mapbox api</h1>
-// </div>

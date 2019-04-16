@@ -2,9 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 const moment = require('moment')
-import Filter from '../pullables/filter'
 // import Auth from '../../lib/auth'
-import Popup from 'reactjs-popup'
 class Home extends React.Component{
   constructor(){
     super()
@@ -17,20 +15,25 @@ class Home extends React.Component{
   }
   componentDidMount() {
     this.getTrips()
-    // this.getUser()
   }
   getTrips(){
     axios.get('/api/trips')
       .then(trips => {
         this.setState({ trips: trips.data })
+        this.filteredByCategory()
       })
       .catch(err => console.log(err))
   }
-  // getUser() {
-  //   axios.get(`/api/${Auth.getPayload().sub}`)
-  //     .then(res => this.setState({ data: res.data.user }))
-  //     .catch(err => console.log(err))
-  // }
+
+
+  filteredByCategory() {
+    const categoryList = []
+    this.state.trips.map(trip =>
+      categoryList.push(trip.categories))
+
+  }
+
+
   render(){
     if (!this.state.trips.length) return null
     return(
@@ -51,7 +54,6 @@ class Home extends React.Component{
                   backgroundRepeat: 'noRepeat'
                 }}
               >
-              .
               </div>
               <div className="contains-budget_duration">
                 <div className="budget">
@@ -62,7 +64,7 @@ class Home extends React.Component{
                 </div>
               </div>
               <div className="contains-categories">
-                <h4>{trip.categories.map((category, i) => (
+                <h4> {trip.categories.map((category, i) => (
                   <span key={i}>{category.name}, </span>))}</h4>
               </div>
               <div className="contains-like_viewTrip">
@@ -76,30 +78,14 @@ class Home extends React.Component{
           ))}
         </main>
         <div className="contains-filterLink">
-          <Popup trigger={<button> <i  className="fas fa-filter"></i></button>} position="top center">
-            <div> <Filter /> </div>
-          </Popup>
+
+          <input id="search" type="text" placeholder="Filter trips by category"/>
+
         </div>
       </div>
     )
   }
 }
 export default Home
-// <div className="contains-like_viewTrip">
-//   <h4>{this.state.trips.liked_by.length} Likes</h4>
-//   <button>VIEW</button>
-//   <div>
-//     {likedTrip && likedTrip.some(checkLike) &&
-//       <a>
-//         <i className="far fa-thumbs-up"></i>
-//         <span>Liked</span>
-//       </a>
-//     }
-//     {likedTrip && !likedTrip.some(checkLike) &&
-//       <a onClick={() => this.handleLike(likedTrip, Auth.getPayload().sub)}>
-//         <i className="far fa-thumbs-up"></i>
-//         <span>Like</span>
-//       </a>
-//     }
-//   </div>
+
 // </div>
