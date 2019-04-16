@@ -1,3 +1,4 @@
+@import '~mapbox-gl/dist/mapbox-gl.css';
 @import 'mobile';
 
 $primary: rgb(174,203,54);
@@ -480,6 +481,10 @@ main {
   .viewtrip-mapbox {
     height: 100%;
     width: 65%;
+    .map {
+      height: 100%;
+      width: 100%;
+    }
   }
   .viewtrip-bottomLeft {
     display: flex;
@@ -505,6 +510,7 @@ main {
       background-color: $primary_soft;
     }
   }
+
 }
 
 // MYTRIPS

@@ -17,6 +17,7 @@ import CreateTrip from './components/trips/createtrip'
 import Filter from './components/pullables/filter'
 import MyTrips from './components/user/mytrips'
 import Wishlist from './components/user/wishlist'
+import Map from './components/pullables/mapbox'
 
 
 
@@ -36,6 +37,7 @@ class App extends React.Component {
           <SecureRoute path="/mytrips" component={MyTrips} />
           <SecureRoute path="/wishlist" component={Wishlist} />
           <Route path="/filter" component={Filter} />
+          <Route path="/map" component={Map} />
           <Route exact path="/" component={Home} />
         </Switch>
         <Footer />
