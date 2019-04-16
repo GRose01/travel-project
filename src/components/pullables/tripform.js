@@ -6,7 +6,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
-const fileStackKey = ('Ad9D3qYyQ7m4ExYBv3yMAz')
+const fileStackKey = process.env.FILESTACK_KEY
 
 import * as filestack from 'filestack-js'
 const client = filestack.init(fileStackKey)
