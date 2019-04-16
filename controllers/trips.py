@@ -27,23 +27,20 @@ def show(trip_id):
 @secure_route
 def create():
     data = request.get_json()
-    budget = Budget.query.get(2)
-    duration = Duration.query.get(2)
+    budget = Budget.query.get(data['budget_id'])
+    duration = Duration.query.get(data['duration_id'])
     trip, errors = trip_schema.load(data)
-    print(trip, budget, duration)
-    # trip, errors = trip_schema.load(data)
+    trip.budget = budget
+    trip.duration = duration
+    categories = list(data['category_id'])
+    for x in categories:
+        category = Category.query.get(x)
+        trip.categories.append(category)
+    trip.creator = g.current_user
     if errors:
         print(errors)
-    #     return jsonify(errors), 422
-
-
-    # trip.duration = duration
-
-    # # categories = list(data['categories'])
-    # print(duration, budget)
-    # trip.save()
-    # return trip_schema.jsonify(trip)
-    return '', 200
+    trip.save()
+    return trip_schema.jsonify(trip)
 
 
 @api.route('/trips/<int:trip_id>', methods=['PUT'])

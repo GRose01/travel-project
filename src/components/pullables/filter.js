@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import SubmitButton from '../pullables/submitbutton'
 
-class Filter extends React.Component{
+class Filter extends React.Component {
   constructor(){
     super()
 

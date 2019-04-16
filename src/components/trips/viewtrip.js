@@ -3,7 +3,7 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 const moment = require('moment')
 
-// import Map from '../pullables/mapbox'
+import Map from '../pullables/mapbox'
 
 // let tripId = null
 //
@@ -23,6 +23,7 @@ class ViewTrip extends React.Component {
     super()
 
     this.state = {}
+
   }
 
   componentDidMount() {
@@ -33,6 +34,7 @@ class ViewTrip extends React.Component {
     axios.get(`/api/trips/${this.props.match.params.id}`)
       .then(res => this.setState({ trip: res.data, user: res.data.creator }))
   }
+
 
   handleLike({ id }) {
     axios.get(`/api/trips/${id}/like`, { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
@@ -117,13 +119,15 @@ class ViewTrip extends React.Component {
             </div>
           </div>
           <div className="viewtrip-mapbox">
+            <Map
+              destination={trip.name}
+            />
           </div>
         </div>
       </main>
     )
   }
 }
-
 export default ViewTrip
 
 
