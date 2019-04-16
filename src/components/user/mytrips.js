@@ -40,14 +40,12 @@ class MyTrips extends React.Component{
       <main>
         {!this.state.myTrips && <p> Finding trips ...</p>}
         {this.state.myTrips && this.state.myTrips.map(trip => (
-          <div key={trip.id} className="trip-card">
-            <div className="contains-title_photo">
-              <div className="title">
-                <h1>{trip.name}</h1>
-              </div>
+          <div key={trip.id} className="mytrip-card">
+            <div className="contains-title">
+              <h1>{trip.name}</h1>
             </div>
 
-            <div className="">
+            <div className="images">
               <img src={trip.images} alt={trip.name}/>
             </div>
 
@@ -70,9 +68,9 @@ class MyTrips extends React.Component{
             <button
               className="deleteButton"
               onClick={() => this.handleDeleteClick(trip)}
-            >Delete this trip</button>
-
-
+            >Delete this trip
+            </button>
+            <Link to={`trips/${trip.id}`}> <button>VIEW THIS TRIP</button> </Link>
           </div>
         ))}
       </main>
@@ -81,3 +79,5 @@ class MyTrips extends React.Component{
 }
 
 export default MyTrips
+
+// <img src={trip.images} alt={trip.name}/>

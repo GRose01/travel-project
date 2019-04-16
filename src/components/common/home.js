@@ -77,11 +77,6 @@ class Home extends React.Component{
             </div>
           ))}
         </main>
-        <div className="contains-filterLink">
-
-          <input id="search" type="text" placeholder="Filter trips by category"/>
-
-        </div>
       </div>
     )
   }

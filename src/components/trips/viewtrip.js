@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
-const moment = require('moment')
-
 import Map from '../pullables/mapbox'
+import FlightWidget from '../pullables/flights'
+const moment = require('moment')
 
 class ViewTrip extends React.Component {
   constructor() {
@@ -37,9 +37,6 @@ class ViewTrip extends React.Component {
     const me = Auth.getPayload().sub
     console.log('trip', trip, user)
     console.log(trip.liked_by)
-
-    // const { likedTrip } = this.state
-    // tripId = this.props.match.params.id
 
     return (
       <main>
@@ -111,6 +108,9 @@ class ViewTrip extends React.Component {
               destination={trip.name}
             />
           </div>
+        </div>
+        <div className="flights">
+          <FlightWidget destination={this.state.trip.name} />
         </div>
       </main>
     )
