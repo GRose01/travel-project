@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import Map from '../pullables/mapbox'
+import FlightWidget from '../pullables/flights'
 // import Flights from '../pullables/flights'
 const moment = require('moment')
 
@@ -108,11 +109,9 @@ class ViewTrip extends React.Component {
               destination={trip.name}
             />
           </div>
-          <div className="flights">
-            <h1>Flight widget</h1>
-            <div data-skyscanner-widget="SearchWidget" data-locale="en-GB" data-params="colour:solar;fontColour:#000;buttonColour:rgba(174,203,54, 0.5);buttonFontColour:#fff;"></div>
-            // <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
-          </div>
+        </div>
+        <div className="flights">
+          <FlightWidget destination={this.state.trip.name} />
         </div>
       </main>
     )

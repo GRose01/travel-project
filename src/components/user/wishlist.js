@@ -26,33 +26,42 @@ class Wishlist extends React.Component {
       <main>
         {!this.state.likes && <p> Getting your wishlist</p>}
         {this.state.likes && this.state.likes.map(trip => (
-          <div key={trip.id} className="trip-card">
+          <div key={trip.id} className="likedtrip-card">
             <Link to={`/trips/${trip.id}`} >
-              <div className="contains-title_photo">
-                <div className="title">
-                  <h1>{trip.name}</h1>
-                </div>
+              <div
+                style={{
+                  backgroundImage: `url(${trip.images})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'noRepeat'
+                }}
+                className="image">
               </div>
 
-              <div className="">
-                <img src={trip.images} alt={trip.name}/>
-              </div>
-
-              <div className="contains-budget_duration">
-                <div className="budget">
-                  <h4>{trip.budget}</h4>
+              <div className="likedtrip-right">
+                <div className="likedtrip-topthird">
+                  <div className="contains-title">
+                    <h1>{trip.name}</h1>
+                  </div>
                 </div>
-                <div className="duration">
-                  <h4>{trip.duration.duration}</h4>
-                </div>
-              </div>
 
-              <div className="contains-categories">
-                <h4>{trip.categories.map((category, i) => (
-                  <span key={i}>{category.name}, </span>))}</h4>
-              </div>
-              <div className="contains-like_viewTrip">
-                <h4>{trip.liked_by.length} likes</h4>
+                <div className="likedtrip-middlethird">
+                  <div className="budget">
+                    <h4>{trip.budget}</h4>
+                  </div>
+                  <div className="duration">
+                    <h4>{trip.duration.duration}</h4>
+                  </div>
+                </div>
+
+                <div className="likedtrip-bottomthird">
+                  <div className="contains-categories">
+                    <h4>{trip.categories.map((category, i) => (
+                      <span key={i}>{category.name}, </span>))}</h4>
+                  </div>
+                  <div className="contains-like_viewTrip">
+                    <h4>{trip.liked_by.length} likes</h4>
+                  </div>
+                </div>
               </div>
 
               <div className="card-content">
