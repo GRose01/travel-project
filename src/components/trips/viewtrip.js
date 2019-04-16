@@ -111,7 +111,7 @@ class ViewTrip extends React.Component {
           <div className="flights">
             <h1>Flight widget</h1>
             <div data-skyscanner-widget="SearchWidget" data-locale="en-GB" data-params="colour:solar;fontColour:#000;buttonColour:rgba(174,203,54, 0.5);buttonFontColour:#fff;"></div>
-            <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+            // <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
           </div>
         </div>
       </main>
