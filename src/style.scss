@@ -597,3 +597,78 @@ main {
     }
   }
 }
+
+.mytrip-card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  background-color: $primary_soft;
+  border: 3px solid black;
+  margin-top: 10px;
+  height:40%;
+  padding: 5px;
+  @media screen and (max-width: 720px) {
+    width: 95%;
+  }
+  .mytrip-title_likes_budget_duration {
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    width: 100%;
+    justify-content:space-around;
+    align-items: center;
+  }
+  .mytrip-everythingElse {
+    display: flex;
+    flex-direction: row;
+    height: 70%;
+    width: 100%;
+    justify-content:space-around;
+    .mytrip-contains-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      height: 97%;
+      justify-content: space-around;
+      text-align: center;
+      align-content: center;
+      button {
+        font-size: 100%;
+        font-family: inherit;
+        border: 1.5px solid black;
+        padding: 5px;
+        background-color: rgba(174,203,54, 0.3);
+        a {
+          margin: 0;
+        }
+      }
+      button:hover {
+        border: 2px solid black;
+        cursor: pointer;
+        background-color: $secondary_soft;
+
+      }
+      .deleteButton:hover {
+        border: 2px solid black;
+        background-color: rgba(255, 15, 15, 0.2);
+      }
+    }
+    .mytrip-categories {
+      display: flex;
+      flex-direction: column;
+      height: 97%;
+      width: 30%;
+      h4 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    }
+    .mytrip-images {
+      height: 97%;
+      width: 40%;
+    }
+  }
+
+}
