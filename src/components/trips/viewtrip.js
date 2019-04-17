@@ -2,16 +2,18 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import Map from '../pullables/mapbox'
-// import Flights from '../pullables/flights'
+import FlightWidget from '../pullables/flights'
 const moment = require('moment')
-
 
 class ViewTrip extends React.Component {
   constructor() {
     super()
 
-    this.state = {}
-
+    this.state = {
+      toFlightSide: false
+    }
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClickToMap = this.handleClickToMap.bind(this)
   }
 
   componentDidMount() {
@@ -23,11 +25,17 @@ class ViewTrip extends React.Component {
       .then(res => this.setState({ trip: res.data, user: res.data.creator }))
   }
 
-
   handleLike({ id }) {
     axios.get(`/api/trips/${id}/like`, { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
       .then(() => this.getData())
       .catch(err => console.log(err.response))
+  }
+
+  handleClick() {
+    this.setState({...this.state, toFlightSide: true }, console.log(this.state))
+  }
+  handleClickToMap() {
+    this.setState({...this.state, toFlightSide: false }, console.log(this.state))
   }
 
   render() {
@@ -50,7 +58,7 @@ class ViewTrip extends React.Component {
           </div>
           <div className="viewtrip-topRight">
             <div className="viewtrip-hasIcon">
-              <i className="fas fa-globe-americas"></i>
+              <i onClick={this.handleClickToMap} className="fas fa-globe-americas"></i>
             </div>
             <div className="viewtrip-likes">
               <h4>{trip.liked_by.length} likes</h4>
@@ -93,27 +101,28 @@ class ViewTrip extends React.Component {
             </div>
           </div>
         </div>
+        {this.state.toFlightSide === true ?
+          <div className="flights viewtrip-bottomThird">
+            <FlightWidget destination={this.state.trip.name} />
+          </div>
+          :
+          <div className="viewtrip-bottomThird">
+            <div className="viewtrip-bottomLeft">
+              <div className="viewtrip-hasIcon">
+                <i onClick={this.handleClick} className="fas fa-plane"></i>
+              </div>
+              <div className="contains-tripUserDetails">
+                <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
+              </div>
+            </div>
+            <div className="viewtrip-mapbox">
+              <Map
+                destination={trip.name}
+              />
+            </div>
 
-        <div className="viewtrip-bottomThird">
-          <div className="viewtrip-bottomLeft">
-            <div className="viewtrip-hasIcon">
-              <i className="fas fa-plane"></i>
-            </div>
-            <div className="contains-tripUserDetails">
-              <h6>Created by {trip.creator.username} <br /> at {moment(trip.created_at).format('hh:mm')} on {moment(trip.created_at).format('Do MMMM YYYY')}</h6>
-            </div>
           </div>
-          <div className="viewtrip-mapbox">
-            <Map
-              destination={trip.name}
-            />
-          </div>
-          <div className="flights">
-            <h1>Flight widget</h1>
-            <div data-skyscanner-widget="SearchWidget" data-locale="en-GB" data-params="colour:solar;fontColour:#000;buttonColour:rgba(174,203,54, 0.5);buttonFontColour:#fff;"></div>
-            // <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
-          </div>
-        </div>
+        }
       </main>
     )
   }

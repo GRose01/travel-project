@@ -2,7 +2,6 @@ import React from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
-
 import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
@@ -19,9 +18,9 @@ class TripForm extends React.Component {
       data: {
         name: '',
         description: '',
-        budget: '',
-        categories: [],
-        duration: '',
+        budget_id: '',
+        category_id: [],
+        duration_id: '',
         image: ''
       }
 
@@ -115,24 +114,19 @@ class TripForm extends React.Component {
 
   handleDurationSelect(e) {
     console.log(e)
-    const data = {...this.state.data, duration: e.value}
+    const data = {...this.state.data, duration_id: e.value}
     this.setState({data}, () => console.log(this.state.data, 'duration'))
     // console.log({data: {tripType: e.target.value}})
   }
 
   handleBudgetSelect(e) {
-    const data = {...this.state.data, budget: e.value}
+    const data = {...this.state.data, budget_id: e.value}
     this.setState({data})
   }
 
-  handleCategorySelect(e) {
-    const categories = []
-    e.forEach(val => {
-      categories.push(val.value)
-      console.log(categories, 'THIS IS ARR')
-      const data = {...this.state.data, categories }
-      this.setState({data})
-    })
+  handleCategorySelect(selected) {
+    const category_id = selected.map(item => item.value)
+    this.setState({ data: {...this.state.data, category_id }})
   }
 
   render() {

@@ -179,28 +179,39 @@ with app.app_context():
     db.session.add(duration8)
 
 # create trips
-    madrid = Trip(destination='Madrid', images='https://www.mhapartments.com/assets/img/city/casino-tour-madrid-41.jpg', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=budget5, duration=duration2, categories=[], creator=miles, liked_by=[ben])
+    madrid = Trip(name='Madrid', images='https://www.mhapartments.com/assets/img/city/casino-tour-madrid-41.jpg', description='The city that knows how to live: Spain’s capital city is very alive and has indeed a very friendly neighbourhood feel', budget=budget5, duration=duration2, categories=[cat1, cat10, cat11, cat21, cat26, cat37], creator=miles, liked_by=[ben])
 
-    nepal = Trip(destination='Annapurna Trek', images='https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/06/Intrepid-Travel-nepal_annapurna_himalaya_pax-hiking.jpg', description='Trekking in the Himalayas, eating dahl and searching for snow leopards', budget=budget9, duration=duration6, categories=[cat3, cat4, cat42, cat32], creator=gaby, liked_by=[ben, miles, gaby])
+    nepal = Trip(name='Lucknow', images='https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/06/Intrepid-Travel-nepal_annapurna_himalaya_pax-hiking.jpg', description='Trekking in the Himalayas, eating dahl and searching for snow leopards', budget=budget9, duration=duration6, categories=[cat3, cat4, cat42, cat32], creator=gaby, liked_by=[ben, miles, gaby])
 
-    iceland = Trip(destination='Iceland Tour', images='https://www.azamaraclubcruises.co.uk/sites/default/files/heros/pr-6-aug-2020-akureyri-iceland.jpg', description='Seeing northern lights and all the sights!', budget=budget7, duration=duration2, categories=[cat27, cat33, cat37], creator=ray, liked_by=[miles, ray])
+    iceland = Trip(name='Reykjavik', images='https://www.azamaraclubcruises.co.uk/sites/default/files/heros/pr-6-aug-2020-akureyri-iceland.jpg', description='Seeing northern lights and all the sights!', budget=budget7, duration=duration2, categories=[cat27, cat33, cat37], creator=ray, liked_by=[miles, ray])
 
-    sapporo = Trip(destination='Sapporo Snow Festival', images='https://cdn.thecrazytourist.com/wp-content/uploads/2018/06/ccimage-shutterstock_789020407.jpg', description='One of the of the largest and most distinctive winter events in the world.', budget=budget7, duration=duration3, categories=[cat20, cat38, cat49], creator=bear, liked_by=[ben, ray, bear])
+    sapporo = Trip(name='Sapporo', images='https://cdn.thecrazytourist.com/wp-content/uploads/2018/06/ccimage-shutterstock_789020407.jpg', description='One of the of the largest and most distinctive winter events in the world.', budget=budget7, duration=duration3, categories=[cat20, cat38, cat49], creator=bear, liked_by=[ben, ray, bear])
 
-    brisbane = Trip(destination='Brisbane', images='http://www.choosebrisbane.com.au/~/media/choose/convention-bureau/city-shots/brisbanecityskyline_20180509_wide.ashx', description='Many activities to try out with your family in the sun', budget=budget5, duration=duration2, categories=[cat5, cat19, cat23, cat10], creator=ben, liked_by=[bear, ray])
+    brisbane = Trip(name='Brisbane', images='http://www.choosebrisbane.com.au/~/media/choose/convention-bureau/city-shots/brisbanecityskyline_20180509_wide.ashx', description='Many activities to try out with your family in the sun', budget=budget5, duration=duration2, categories=[cat5, cat19, cat23, cat10], creator=ben, liked_by=[bear, ray])
 
-    foshan = Trip(destination='Foshan', images='http://en.foshannews.net/Living/201702/W020170207597115875590.png', description='Foshan isn\'t just an industrial city: there is culture too!', budget=budget2, duration=duration1, categories=[cat10, cat8, cat13], creator=miles, liked_by=[gaby])
+    foshan = Trip(name='Foshan', images='http://en.foshannews.net/Living/201702/W020170207597115875590.png', description='Foshan isn\'t just an industrial city: there is culture too!', budget=budget2, duration=duration1, categories=[cat10, cat8, cat13], creator=miles, liked_by=[gaby])
 
-    hochiminh = Trip(destination='Ho Chi Minh City', images='https://metro.co.uk/wp-content/uploads/2018/02/509551992.jpg?quality=90&strip=all', description='Vietnam at its most dizzying: a high-octane city of commerce and culture pulsating energy', budget=budget5, duration=duration4, categories=[cat4, cat13, cat21, cat42], creator=gaby, liked_by=[bear, miles])
+    hochiminh = Trip(name='Ho Chi Minh City', images='https://metro.co.uk/wp-content/uploads/2018/02/509551992.jpg?quality=90&strip=all', description='Vietnam at its most dizzying: a high-octane city of commerce and culture pulsating energy', budget=budget5, duration=duration4, categories=[cat4, cat13, cat21, cat42], creator=gaby, liked_by=[bear, miles])
 
-    bangalore = Trip(destination='Bangalore Yoga Retreat', images='http://yogaelixir1.bookible.com/wp-content/uploads/sites/305/2017/10/1-Shreyas-resort-wide-view.jpg', description='Channel your inner zen and develop your yoga', budget=budget8, duration=duration7, categories=[cat3, cat13, cat24, cat29, cat46, cat50], creator=miles, liked_by=[miles, ray, gaby])
+    bangalore = Trip(name='Bangalore', images='http://yogaelixir1.bookible.com/wp-content/uploads/sites/305/2017/10/1-Shreyas-resort-wide-view.jpg', description='Channel your inner zen and develop your yoga', budget=budget8, duration=duration7, categories=[cat3, cat13, cat24, cat29, cat46, cat50], creator=miles, liked_by=[miles, ray, gaby])
 
-    croatia = Trip(destination='Sail Croatia', images='http://www.traveller.com.au/content/dam/images/1/1/g/h/j/v/image.related.articleLeadwide.620x349.grg7vj.png/1473832124431.jpg', description='Live on the Adriatic sea and explore the coast from the sea', budget=budget12, duration=duration8, categories=[cat3, cat12, cat15, cat21, cat29, cat30, cat35], creator=bear, liked_by=[ben])
+    croatia = Trip(name='Hvar', images='http://www.traveller.com.au/content/dam/images/1/1/g/h/j/v/image.related.articleLeadwide.620x349.grg7vj.png/1473832124431.jpg', description='Live on the Adriatic sea and explore the coast from the sea', budget=budget12, duration=duration8, categories=[cat3, cat12, cat15, cat21, cat29, cat30, cat35], creator=bear, liked_by=[ben])
 
-    benidorm = Trip(destination='Benidorm', images='https://d1ez3020z2uu9b.cloudfront.net/imagecache/blog-photos/17019.jpg', description='Sun, sex and suspicious looking people', budget=budget4, duration=duration2, categories=[cat5, cat22, cat36, cat6, cat23], creator=ray, liked_by=[ben, miles])
+    benidorm = Trip(name='Benidorm', images='https://d1ez3020z2uu9b.cloudfront.net/imagecache/blog-photos/17019.jpg', description='Sun, sex and suspicious looking people', budget=budget4, duration=duration2, categories=[cat5, cat22, cat36, cat6, cat23], creator=ray, liked_by=[ben, miles])
 
-    dubai = Trip(destination='Dubai', images='https://images1.bovpg.net/st/back/uk//natural/e69297185f7f43508a96f9be6c0cc4fa5dac5835.jpg', description='Dubai ranks third in the world for number of skyscrapers ', budget=budget6, duration=duration3, categories=[cat2, cat5, cat11, cat13, cat27, cat40], creator=gaby, liked_by=[gaby, ray])
+    dubai = Trip(name='Dubai', images='https://images1.bovpg.net/st/back/uk//natural/e69297185f7f43508a96f9be6c0cc4fa5dac5835.jpg', description='Dubai ranks third in the world for number of skyscrapers', budget=budget6, duration=duration3, categories=[cat2, cat5, cat11, cat13, cat27, cat40], creator=gaby, liked_by=[gaby, ray])
 
+    newyork = Trip(name='New York', images='https://cdn.holidayguru.ie/wp-content/uploads/2018/01/new-york-city-cityscape-skyline-with-statue-of-liberty-shutterstock_339298199.jpg', description='New York is a city every traveler should visit', budget=budget7, duration=duration4, categories=[cat10, cat13, cat16, cat21, cat40], creator=bear, liked_by=[ben, ray])
+
+    marrakesh = Trip(name='Marrakesh', images='https://media.nomadicmatt.com/marguide.jpg', description='History and culture intertwined with beautiful architecture and bright colors', budget=budget3, duration=duration3, categories=[cat7, cat13, cat41, cat25], creator=ray, liked_by=[gaby, ray])
+
+    mumbai = Trip(name='Mumbai', images='https://i.cdn.newsbytesapp.com/images/146_22881533465118.jpg?tr=w-530&z=l', description='The centre of Bollywood, all the colours', budget=budget4, duration=duration6, categories=[cat3, cat13, cat20, cat40], creator=gaby, liked_by=[miles])
+
+    cusco = Trip(name='Cusco', images='https://www.boletomachupicchu.com/gutblt/wp-content/uploads/2017/05/machu-picchu-2.jpg', description='Visit the World Heritage Machu Picchu', budget=budget4, duration=duration6, categories=[cat3, cat15, cat28, cat41, cat45], creator=miles, liked_by=[ray, bear])
+
+    rome = Trip(name='Rome', images='https://www.vaticanguidedtour.com/wp-content/uploads/2018/02/rome-colosseum.jpg', description='Pizza, pasta and Roman history', budget=budget2, duration=duration1, categories=[cat10, cat11, cat13, cat21, cat33], creator=ben, liked_by=[ray, bear])
+
+    saltlakecity = Trip(name='Salt Lake City', images='https://cdn.thecrazytourist.com/wp-content/uploads/2018/06/ccimage-shutterstock_766585558.jpg', description='Trek through the orange valley', budget=budget6, duration=duration5, categories=[cat2, cat9, cat15, cat30, cat42, cat47], creator=gaby, liked_by=[ben, bear])
 
 # addings TRIP seeds only
     db.session.add(madrid)
@@ -214,6 +225,12 @@ with app.app_context():
     db.session.add(croatia)
     db.session.add(benidorm)
     db.session.add(dubai)
+    db.session.add(newyork)
+    db.session.add(marrakesh)
+    db.session.add(mumbai)
+    db.session.add(cusco)
+    db.session.add(rome)
+    db.session.add(saltlakecity)
 
 #adding CATEGORIES seeds ONLY
 
