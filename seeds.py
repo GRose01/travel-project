@@ -199,8 +199,19 @@ with app.app_context():
 
     benidorm = Trip(name='Benidorm', images='https://d1ez3020z2uu9b.cloudfront.net/imagecache/blog-photos/17019.jpg', description='Sun, sex and suspicious looking people', budget=budget4, duration=duration2, categories=[cat5, cat22, cat36, cat6, cat23], creator=ray, liked_by=[ben, miles])
 
-    dubai = Trip(name='Dubai', images='https://images1.bovpg.net/st/back/uk//natural/e69297185f7f43508a96f9be6c0cc4fa5dac5835.jpg', description='Dubai ranks third in the world for number of skyscrapers ', budget=budget6, duration=duration3, categories=[cat2, cat5, cat11, cat13, cat27, cat40], creator=gaby, liked_by=[gaby, ray])
+    dubai = Trip(name='Dubai', images='https://images1.bovpg.net/st/back/uk//natural/e69297185f7f43508a96f9be6c0cc4fa5dac5835.jpg', description='Dubai ranks third in the world for number of skyscrapers', budget=budget6, duration=duration3, categories=[cat2, cat5, cat11, cat13, cat27, cat40], creator=gaby, liked_by=[gaby, ray])
 
+    newyork = Trip(name='New York', images='https://cdn.holidayguru.ie/wp-content/uploads/2018/01/new-york-city-cityscape-skyline-with-statue-of-liberty-shutterstock_339298199.jpg', description='New York is a city every traveler should visit', budget=budget7, duration=duration4, categories=[cat10, cat13, cat16, cat21, cat40], creator=bear, liked_by=[ben, ray])
+
+    marrakesh = Trip(name='Marrakesh', images='https://media.nomadicmatt.com/marguide.jpg', description='History and culture intertwined with beautiful architecture and bright colors', budget=budget3, duration=duration3, categories=[cat7, cat13, cat41, cat25], creator=ray, liked_by=[gaby, ray])
+
+    mumbai = Trip(name='Mumbai', images='https://i.cdn.newsbytesapp.com/images/146_22881533465118.jpg?tr=w-530&z=l', description='The centre of Bollywood, all the colours', budget=budget4, duration=duration6, categories=[cat3, cat13, cat20, cat40], creator=gaby, liked_by=[miles])
+
+    cusco = Trip(name='Cusco', images='https://www.boletomachupicchu.com/gutblt/wp-content/uploads/2017/05/machu-picchu-2.jpg', description='Visit the World Heritage Machu Picchu', budget=budget4, duration=duration6, categories=[cat3, cat15, cat28, cat41, cat45], creator=miles, liked_by=[ray, bear])
+
+    rome = Trip(name='Rome', images='https://www.vaticanguidedtour.com/wp-content/uploads/2018/02/rome-colosseum.jpg', description='Pizza, pasta and Roman history', budget=budget2, duration=duration1, categories=[cat10, cat11, cat13, cat21, cat33], creator=ben, liked_by=[ray, bear])
+
+    saltlakecity = Trip(name='Salt Lake City', images='https://cdn.thecrazytourist.com/wp-content/uploads/2018/06/ccimage-shutterstock_766585558.jpg', description='Trek through the orange valley', budget=budget6, duration=duration5, categories=[cat2, cat9, cat15, cat30, cat42, cat47], creator=gaby, liked_by=[ben, bear])
 
 # addings TRIP seeds only
     db.session.add(madrid)
@@ -214,6 +225,12 @@ with app.app_context():
     db.session.add(croatia)
     db.session.add(benidorm)
     db.session.add(dubai)
+    db.session.add(newyork)
+    db.session.add(marrakesh)
+    db.session.add(mumbai)
+    db.session.add(cusco)
+    db.session.add(rome)
+    db.session.add(saltlakecity)
 
 #adding CATEGORIES seeds ONLY
 

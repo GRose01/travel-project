@@ -124,13 +124,9 @@ class TripForm extends React.Component {
     this.setState({data})
   }
 
-  handleCategorySelect(e) {
-    const categories = []
-    e.forEach(val => {
-      categories.push(val.value)
-      const data = {...this.state.data, categories }
-      this.setState({data})
-    })
+  handleCategorySelect(selected) {
+    const category_id = selected.map(item => item.value)
+    this.setState({ data: {...this.state.data, category_id }})
   }
 
   render() {

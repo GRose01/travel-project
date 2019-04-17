@@ -61,7 +61,7 @@ class Header extends React.Component {
             <h4 className="desktop"> <Link to='/trips/new'>add a trip</Link> </h4>
             <Popup trigger={<button className="mobile popupButton"> <i className="fas fa-bars mobile"></i></button>} position="right top">
               <div className="navbarPopup"  >
-                <h4 className="mobile navbarPopupText"> <Link to='/'>my trips</Link> </h4>
+                <h4 className="mobile navbarPopupText"> <Link to='/mytrips'>my trips</Link> </h4>
                 <h4 className="mobile navbarPopupText"> <Link to='/wishlist'>liked trips</Link> </h4>
                 <h4 className="mobile navbarPopupText"> <Link to='/trips/new'>add a trip</Link> </h4>
               </div>
