@@ -27,7 +27,7 @@ class MyTrips extends React.Component{
     axios.delete(`/api/trips/${trip.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
-      .componentDidMount()
+      .then(() => this.componentDidMount())
       .then(res => console.log(res))
 
   }
