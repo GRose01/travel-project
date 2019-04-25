@@ -93,9 +93,11 @@ class TripForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const data = {...this.state.data, image: this.state.image}
+    console.log(this.state.image)
+    const data = {...this.state.data,image: this.state.image}
     axios.post('/api/trips', data,
       { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(() => this.props.history.push('/'))
       .then(res => console.log(res))
       .catch(err => console.log(err.response))
   }
