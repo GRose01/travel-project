@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import axios from 'axios'
-
+import { withRouter } from 'react-router-dom'
 import Auth from '../../lib/auth'
 import SubmitButton from '../pullables/submitbutton'
 
@@ -93,10 +93,10 @@ class TripForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const data = {...this.state.data, image: this.state.image}
+    const data = {...this.state.data, images: this.state.image}
     axios.post('/api/trips', data,
       { headers: { Authorization: `Bearer ${Auth.getToken()}`}})
-      .then(res => console.log(res))
+      .then(() => this.props.history.push('/mytrips'))
       .catch(err => console.log(err.response))
   }
 
@@ -205,4 +205,4 @@ class TripForm extends React.Component {
   }
 }
 
-export default TripForm
+export default withRouter(TripForm)
