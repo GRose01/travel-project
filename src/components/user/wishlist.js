@@ -44,7 +44,6 @@ class Wishlist extends React.Component {
                 </div>
 
                 <div className="likedtrip-rightcontent">
-
                   <div className="likedtrip-tophalf">
                     <div className="budget">
                       <h4>{trip.budget}</h4>

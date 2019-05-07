@@ -100,12 +100,12 @@ class TripForm extends React.Component {
       .catch(err => console.log(err.response))
   }
 
-  handleChange (e) {
+  handleChange(e) {
     const data = {...this.state.data, description: e.target.value }
     this.setState({data})
   }
 
-  handleDestinationSelect (e) {
+  handleDestinationSelect(e) {
     console.log(e)
     const data = {...this.state.data, name: e.label}
     this.setState({data}, () => console.log(this.state.data, 'destination'))
