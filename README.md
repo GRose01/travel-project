@@ -1,6 +1,6 @@
 # General Assembly WDI Project 4: A Flask & React App
 
-[Portfolio Link](https://itchyfeettravel.herokuapp.com/)
+[Itchy Feet Link](https://itchyfeettravel.herokuapp.com/)
 
 Itchy Feet was my Final Project of the General Assembly Web Development Immersive course. I created it in a pair, and it was the first projects using Python and Flask for the backend and SQL for the database.
 
@@ -73,7 +73,7 @@ We decided we wanted to create a mobile responsive app that allows you to browse
 
 ![search](screenshots/trip-page.png)
 
-___
+---
 
 ### Functionality
 
@@ -86,10 +86,10 @@ The functionality works much the same way as most popular social network sites. 
 ### Process
 
 1.  Having decided the idea, we set up a Trello board to ensure coordination on all tasks.
-![trello](screenshots/trello.png) - add in
+![trello](screenshots/trello.png)
 2.  To understand the fundamental functioning we worked out the interaction between models.
 3.  We then created wireframes for the front end to visualise how our backend would interact with it.
-![wireframes](screenshots/frontend-wireframe.png) - add in
+![wireframes](screenshots/frontend-wireframe.png)
 4.  By day 2 we were happy with our planning phase, so set up our backend: creating the models, controllers, and then routes, all in Python.
 5.  By day 4 we were happy with the backend set up, having tested it using Insomnia. we then started creating the frontend in JavaScript, made up of various React components and connecting the two.
 6.  Having reached an MVP level of completion, we began styling the app and adding in extra features.
@@ -210,14 +210,15 @@ class Wishlist extends React.Component {
 
 We used CSS and Sass to style Itchy Feet. It gave us more freedom than using a framework and although it took up more time, it gave us the desired outcome and freedom with responsiveness.
 
-___
+---
 
-### Wins and Blockers
+### Wins and Challenges
 
 Our biggest struggle was using a pre-populated data dump. We couldn't seed our data as we couldn't get the data (set in SQL) to integrate with our Python database, therefore each time we seeded we had to delete our database and create a new one in order to put the information from the data dump into the correct database that could then connect with our front end. This caused big issues and took up far too much time, in hindsight we would have used a public API instead. However we worked with it and you can create trips by selecting the destinations from the data dump.
 
 Overall I am please with the outcome, it looks neat and is fully responsive on mobile. The features that we have work well and it is easy to use and manoeuvre, with features such as liking, maps, flights preset from your location to the destination of your trip and the ability to create and delete trips.
-___
+
+---
 
 ## Future Features
 
@@ -228,7 +229,7 @@ If we had more time essential future features we would like to add include:
 * A recommendations feature.
 * An API for recommendations for the destination chosen.
 
-___
+---
 
 ### Key Learnings
 
