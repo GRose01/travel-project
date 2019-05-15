@@ -37,6 +37,9 @@ In 1 week, as a pair, we had to:
 
 We decided we wanted to create a mobile responsive app that allows you to browse through travel ideas, create posts and save ideas. Using JavaScript/React for the front end and Python/Flask for the back end, we created a web app that did just this. We used a pre-existing location based data dump, instead of an external API to generate location options. We also used Mapbox, and a Skyscanner flight widget for extra features.
 
+In a pair, we coded the initial set up of the models and controllers before splitting and working on separate front end components. We continuously helped each other and cross checked our work. Individually I worked on
+the mytrips page, and the wishlist page, as well as the flight widget and some styling.
+
 ---
 
 ## Screenshot Walk-through
