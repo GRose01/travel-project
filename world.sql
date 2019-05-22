@@ -5367,8 +5367,8 @@ COPY city (id, name, countrycode, district, population) FROM stdin;
 -- \.
 
 
-ALTER TABLE ONLY city
-    ADD CONSTRAINT city_pkey PRIMARY KEY (id);
+-- ALTER TABLE ONLY city
+--     ADD CONSTRAINT city_pkey PRIMARY KEY (id);
 
 -- ALTER TABLE ONLY country
 --     ADD CONSTRAINT country_pkey PRIMARY KEY (code);
